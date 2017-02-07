@@ -96,6 +96,19 @@ CREATE TABLE fct_item_transaction (
 );
 
 
+CREATE DATABASE ott;
+
+DROP TABLE IF EXISTS person;
+CREATE TABLE person (
+	name varchar(20),
+	age int
+);
+
+INSERT INTO person (name, age) VALUES
+('Alex', 20),
+('Janice', 28),
+('Peter', 32)
+;
 
 
 

@@ -15,10 +15,12 @@
       <sourceFolder url="file://$MODULE_DIR$/src/main/scala" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/main/sql" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/main/python" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/test/scala" isTestSource="true" />
       <excludeFolder url="file://$MODULE_DIR$/target" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="Python 3.5.2 (/usr/local/Frameworks/Python.framework/Versions/3.5/bin/python3) interpreter library" level="application" />
     <orderEntry type="library" name="Maven: javax.ws.rs:javax.ws.rs-api:2.0" level="project" />
     <orderEntry type="library" name="Maven: org.scala-lang:scala-library:2.11.8" level="project" />
     <orderEntry type="library" name="Maven: org.scala-lang:scala-compiler:2.11.8" level="project" />
@@ -288,6 +290,6 @@
     <orderEntry type="library" name="Maven: org.glassfish.jersey.containers:jersey-container-jetty-http:2.17" level="project" />
     <orderEntry type="library" name="Maven: org.eclipse.jetty:jetty-continuation:9.1.1.v20140108" level="project" />
     <orderEntry type="library" name="Maven: org.scala-lang:scala-actors:2.11.8" level="project" />
-    <orderEntry type="library" name="Python 3.5.2 (/usr/local/Frameworks/Python.framework/Versions/3.5/bin/python3) interpreter library" level="application" />
+    <orderEntry type="library" name="Maven: org.postgresql:postgresql:9.4-1201-jdbc41" level="project" />
   </component>
 </module>
