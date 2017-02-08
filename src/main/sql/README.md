@@ -36,7 +36,10 @@ Reference: http://www.cnblogs.com/zhangeamon/p/5787365.html. only for testing pu
 
 
 #### Hive common syntax
-    SHOW TABLES; --show all the tables that exists in Hive
+    SHOW table; --show all the tables that exists in Hive
+    DESC table; --describe the table structure
+    SHOW PARTITIONS table_partitioned; --display the table partition information
+    ALTER TABLE table_partitioned ADD PARTITION (col1='20170101', col2='China')
 
 
 
@@ -54,6 +57,7 @@ Start and stop the Hadoop Cluster
     hdfs dfs -mkdir /user/data/staging
     hdfs dfs -put $HIVE_HOME/examples/files/employee_part.txt /user/data/staging
     hdfs dfs -put $HIVE_HOME/examples/files/testHiveDriver.txt /user/data/staging
+    hdfs dfs -put $HIVE_HOME/examples/files/person_partitioned.txt /user/data/staging
 
 
 
