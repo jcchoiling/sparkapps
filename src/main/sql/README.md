@@ -27,6 +27,7 @@ This section serves as a quick guide for looking up the sql syntax
 
 #### Steps to enable thrift
 start hwi service: hive --service hiveserver2
+service hive-metastore start
 
 
     beeline -u "jdbc:hive2://<localhost>:<port>/<dbname>" -n <username> -p <password> -d <class.jar>
@@ -36,7 +37,7 @@ Reference: http://www.cnblogs.com/zhangeamon/p/5787365.html. only for testing pu
 
 
 #### Hive common syntax
-    SHOW table; --show all the tables that exists in Hive
+    SHOW tables; --show all the tables that exists in Hive
     DESC table; --describe the table structure
     SHOW PARTITIONS table_partitioned; --display the table partition information
     ALTER TABLE table_partitioned ADD PARTITION (col1='20170101', col2='China')
