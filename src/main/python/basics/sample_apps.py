@@ -1,4 +1,4 @@
-import setting
+import viu_setting
 
 
 if __name__ == "__main__":

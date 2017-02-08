@@ -5,6 +5,10 @@ import org.apache.spark.sql.{SQLContext, SparkSession}
 
 /**
   * Created by jcchoiling on 7/2/2017.
+  *
+  * e.g. psql -d mydb -U myuser password
+  * psql -d ott -U postgres
+  *
   */
 object postgresApp {
 
