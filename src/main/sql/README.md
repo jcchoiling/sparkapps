@@ -8,6 +8,7 @@ This section serves as a quick guide for looking up the sql syntax
 [to be updated]
 
 
+
 ## Hive
 1. Once you execute the create table synatx, you can check it in the HDFS, e.g. /user/hive/warehouse. It will create a folder displaying the same name. 
 
@@ -28,8 +29,8 @@ This section serves as a quick guide for looking up the sql syntax
 start hwi service: hive --service hiveserver2
 
 
-beeline -u "jdbc:hive2://<localhost>:<port>/<dbname>" -n <username> -p <password> -d <class.jar>
-$HIVE_HOME/bin/beeline -u "jdbc:hive2://localhost:10000/default" -n root
+    beeline -u "jdbc:hive2://<localhost>:<port>/<dbname>" -n <username> -p <password> -d <class.jar>
+    $HIVE_HOME/bin/beeline -u "jdbc:hive2://localhost:10000/default" -n root
 Reference: http://www.cnblogs.com/zhangeamon/p/5787365.html. only for testing purpose, not suggest to use root in production
 
 
@@ -41,7 +42,8 @@ Reference: http://www.cnblogs.com/zhangeamon/p/5787365.html. only for testing pu
 
 
 ## HDFS
-Start and stop the Hadoop Cluster
+Start and stop the Hadoop Cluster 
+
     $HADOOP_HOME/sbin/start-dfs.sh
     $HADOOP_HOME/sbin/start-yarn.sh
     $HADOOP_HOME/sbin/stop-dfs.sh
@@ -57,6 +59,7 @@ Start and stop the Hadoop Cluster
 
 ## SPARK
 Start and stop the Spark Cluster
+
     $SPARK_HOME/sbin/start-all.sh
     $SPARK_HOME/sbin/stop-all.sh
 
@@ -66,5 +69,5 @@ Start and stop the Kafka Cluster
 
 
 ## ZOOKEEPER
-Starting the Spark Cluster
+Start and stop the ZooKeeper
 

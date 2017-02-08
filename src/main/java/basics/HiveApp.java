@@ -90,6 +90,7 @@ public class HiveApp {
 
             /**
              *  第4.6步骤：Hive中的对Table进行统计操作；
+             *  這里会产生 mapReduce Job
              */
             sql = "SELECT count(1) FROM " + tableName ;
             System.out.println("Running: " + sql);
