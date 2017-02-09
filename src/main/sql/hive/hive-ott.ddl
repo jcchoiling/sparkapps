@@ -19,6 +19,7 @@ ROW FORMAT DELIMITED FIELDS TERMINATED BY '^'
 LINES TERMINATED BY '\n'
 STORED AS TEXTFILE;
 
+--建立索引一般都会有 partition
 CREATE INDEX index_movies ON TABLE movies(movie_id) AS 'org.apache.hadoop.hive.ql.index.compact.CompactIndexHandler' WITH DEFERRED REBUILD ;
 
 ---------------------------------------------
@@ -100,8 +101,3 @@ LOAD DATA LOCAL INPATH '/home/master/moviedata/age.dat' OVERWRITE INTO TABLE age
 ALTER INDEX index_ratings ON ratings rebuild;
 
 
-SELECT * FROM ott.movies LIMIT 10;
-SELECT * FROM ott.ratings LIMIT 10;
-SELECT * FROM ott.occupations LIMIT 10;
-SELECT * FROM ott.users LIMIT 10;
-SELECT * FROM ott.age LIMIT 10;

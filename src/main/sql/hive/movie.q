@@ -1,20 +1,3 @@
--- execute hive -f HiveScript.sql
-SHOW DATABASES;
-
-USE default;
-
-SHOW TABLES;
-
-SHOW INDEX ON ratings;
-
-SHOW PARTITIONS ott.ratings;
-
--- find a person whose salary has more than $2000
-SELECT name, sum(salary)
-FROM worker
-GROUP BY name
-HAVING sum(salary) > 2000;
-
 
 -- Look for the top10 titles which has the most ratings
 -- Time taken: 52.883 seconds, Fetched: 438 row(s)
@@ -55,3 +38,12 @@ FROM ratings
 GROUP BY movies.title, movies.genres
 ORDER BY total_rating desc
 LIMIT 10;
+
+
+SELECT * FROM ott.movies LIMIT 10;
+SELECT * FROM ott.ratings LIMIT 10;
+SELECT * FROM ott.occupations LIMIT 10;
+SELECT * FROM ott.users LIMIT 10;
+SELECT * FROM ott.age LIMIT 10;
+
+SELECT * FROM ott__ratings_index_ratings__;

@@ -25,7 +25,7 @@ object HiveOps {
       */
 
     sql("CREATE TABLE IF NOT EXISTS employee(id INT, name STRING, age INT) ROW FORMAT DELIMITED FIELDS TERMINATED BY ',' LINES TERMINATED BY '\n' ")
-    sql("LOAD DATA LOCAL INPATH 'src/main/resources/employee.txt' INTO TABLE employee")
+    sql("LOAD DATA LOCAL INPATH 'src/main/resources/employees.txt' INTO TABLE employee")
 
     sql("SELECT * FROM employee").show()
 
