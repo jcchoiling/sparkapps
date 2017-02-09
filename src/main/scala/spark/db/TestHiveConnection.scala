@@ -1,11 +1,11 @@
-package spark.basics
+package spark.db
 
 import java.sql.{Connection, DriverManager, ResultSet}
 
 /**
   * Created by jcchoiling on 9/2/2017.
   */
-object HiveConnection extends App{
+object TestHiveConnection extends App{
   
   val url = "jdbc:hive2://master:10000/default"
   val driver = "org.apache.hive.jdbc.HiveDriver"
@@ -56,7 +56,7 @@ object HiveConnection extends App{
     /**
       * 第4.4步骤：加载数据进入Hive中的Table;
       */
-    val filepath = "/usr/local/hive210/examples/files/testHiveDriver.txt"
+    val filepath = "/usr/local/hive/hive210/examples/files/testHiveDriver.txt"
     sql = "LOAD DATA LOCAL INPATH '" + filepath + "' INTO TABLE " + tableName
     println("Running: " + sql)
     stmt.execute(sql)
@@ -88,7 +88,9 @@ object HiveConnection extends App{
 
 
     stmt.close
+
     conn.close
+
   } catch {
     case e: Exception => e.printStackTrace
   }

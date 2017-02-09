@@ -16,9 +16,20 @@ COMMENT 'This is the worker table'
 ROW FORMAT DELIMITED FIELDS TERMINATED BY '\|'
 LINES TERMINATED BY '\n';
 
+
 --Hive table creation: person with partition
 --Hive 的最住实战：采用 partitioned 分区表 + Parquet 文件存储的方式！
 --Hive 的最住实战：一般情况下分区都是按时间去分区的！
+DROP TABLE IF EXISTS employee_partitioned;
+CREATE EXTERNAL TABLE employee (id int, name String, salary Double, country String)
+COMMENT 'This is the staging page view table'
+PARTITIONED BY (pdate String, phour String)
+ROW FORMAT DELIMITED FIELDS TERMINATED BY '\|'
+LINES TERMINATED BY '\n'
+STORED AS TEXTFILE
+LOCATION '/user/data/staging/employee_part';
+
+
 DROP TABLE IF EXISTS employee_partitioned;
 CREATE EXTERNAL TABLE employee (id int, name String, salary Double, country String)
 COMMENT 'This is the staging page view table'
@@ -49,7 +60,6 @@ ROW FORMAT DELIMITED FIELDS TERMINATED BY '\|'
 LINES TERMINATED BY '\n'
 STORED AS TEXTFILE
 LOCATION '/user/data/staging/employee_part';
-
 
 
 

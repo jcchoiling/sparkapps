@@ -72,7 +72,7 @@ public class HiveApp {
             /**
              *  第4.4步骤：加载数据进入Hive中的Table；
              */
-            String filepath = "/usr/local/hive210/examples/files/testHiveDriver.txt";
+            String filepath = "/usr/local/hive/hive210/examples/files/testHiveDriver.txt";
             sql = "LOAD DATA LOCAL INPATH '" + filepath + "' INTO TABLE " + tableName;
             System.out.println("Running: " + sql);
             stmt.execute(sql);

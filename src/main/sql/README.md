@@ -1,5 +1,5 @@
 # SQL
-This section serves as a quick guide for looking up the sql syntax
+This section serves as a quick guide for looking up the sql syntax.
 
 ## PostgresSQL
 [to be updated]
@@ -25,14 +25,15 @@ This section serves as a quick guide for looking up the sql syntax
 *   copy the tool.jar from JAVA_HOME/lib to $HIVE_HOME/lib
 *   start hwi service: hive --service hwi
 
-#### Steps to enable thrift
-start hwi service: hive --service hiveserver2
-service hive-metastore start
+#### Steps to enable hive metastore and hiveServer2
+    hive --service hiveserver2
+    service hive-metastore start
 
+Check the jdbc login
 
     beeline -u "jdbc:hive2://<localhost>:<port>/<dbname>" -n <username> -p <password> -d <class.jar>
     $HIVE_HOME/bin/beeline -u "jdbc:hive2://localhost:10000/default" -n root
-Reference: http://www.cnblogs.com/zhangeamon/p/5787365.html. only for testing purpose, not suggest to use root in production
+*Reference: http://www.cnblogs.com/zhangeamon/p/5787365.html. only for testing purpose, not suggest to use root in production*
 
 
 
@@ -42,6 +43,11 @@ Reference: http://www.cnblogs.com/zhangeamon/p/5787365.html. only for testing pu
     SHOW PARTITIONS table_partitioned; --display the table partition information
     ALTER TABLE table_partitioned ADD PARTITION (col1='20170101', col2='China')
 
+#### Hive Script
+
+    hive -f <hive-script.sql> -- execute the hive script
+    hive -S -e "SELECT * FROM worker" >> /usr/local/hive210/hiveTmp/hiveresults.txt
+    set.hive.map.aggr = true
 
 
 
@@ -52,6 +58,8 @@ Start and stop the Hadoop Cluster
     $HADOOP_HOME/sbin/start-yarn.sh
     $HADOOP_HOME/sbin/stop-dfs.sh
     $HADOOP_HOME/sbin/stop-yarn.sh
+    $HADOOP_HOME/sbin/start-all.sh
+    $HADOOP_HOME/sbin/stop-all.sh
 
 #### Hadoop common syntax
     hdfs dfs -ls /
