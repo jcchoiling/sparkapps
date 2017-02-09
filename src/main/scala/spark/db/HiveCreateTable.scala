@@ -24,7 +24,6 @@ object HiveCreateTable extends App{
       * 調用 HiveScript
       */
 
-//    val sqlFile = "/usr/local/hive/hive210/HiveScript.sql"
     val sqlFile = "src/main/resources/spark.txt"
     val line = scala.io.Source.fromFile(sqlFile).getLines()
     line.foreach(println)

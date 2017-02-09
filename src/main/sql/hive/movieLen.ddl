@@ -15,9 +15,11 @@ CREATE TABLE movies (
     genres string COMMENT 'movie genres'
 )
 COMMENT 'This is the movie data'
-ROW FORMAT DELIMITED FIELDS TERMINATED BY '\::'
+ROW FORMAT DELIMITED FIELDS TERMINATED BY '^'
 LINES TERMINATED BY '\n'
 STORED AS TEXTFILE;
+
+CREATE INDEX index_movies ON TABLE movies(movie_id) AS 'org.apache.hadoop.hive.ql.index.compact.CompactIndexHandler' WITH DEFERRED REBUILD ;
 
 ---------------------------------------------
 --Age information: AgeID::AgeRange
@@ -28,9 +30,11 @@ CREATE TABLE age (
     age_range string COMMENT 'age range such as 18-25'
 )
 COMMENT 'This is the age data'
-ROW FORMAT DELIMITED FIELDS TERMINATED BY '\::'
+ROW FORMAT DELIMITED FIELDS TERMINATED BY '^'
 LINES TERMINATED BY '\n'
 STORED AS TEXTFILE;
+
+CREATE INDEX index_age ON TABLE age(age_id) AS 'org.apache.hadoop.hive.ql.index.compact.CompactIndexHandler' WITH DEFERRED REBUILD ;
 
 ---------------------------------------------------------------------
 --User information: UserID::Gender::AgeID::OccupationID::Zip-code
@@ -44,10 +48,11 @@ CREATE TABLE users (
     zip_code int COMMENT 'user zip code'
 )
 COMMENT 'This is the user data'
-ROW FORMAT DELIMITED FIELDS TERMINATED BY '\::'
+ROW FORMAT DELIMITED FIELDS TERMINATED BY '^'
 LINES TERMINATED BY '\n'
 STORED AS TEXTFILE;
 
+CREATE INDEX index_users ON TABLE users(user_id) AS 'org.apache.hadoop.hive.ql.index.compact.CompactIndexHandler' WITH DEFERRED REBUILD ;
 
 -----------------------------------------------------
 -- Occupation information: OccupationID::Occupation
@@ -58,10 +63,11 @@ CREATE TABLE occupations (
     occupation_name string  COMMENT 'occupation name for occupations table'
 )
 COMMENT 'This is the occupation data'
-ROW FORMAT DELIMITED FIELDS TERMINATED BY '\::'
+ROW FORMAT DELIMITED FIELDS TERMINATED BY '^'
 LINES TERMINATED BY '\n'
 STORED AS TEXTFILE;
 
+CREATE INDEX index_occupations ON TABLE occupations(occupation_id) AS 'org.apache.hadoop.hive.ql.index.compact.CompactIndexHandler' WITH DEFERRED REBUILD ;
 
 -----------------------------------------------------------------------------------
 -- Rating information: UserID::MovieID::Rating::Timestamp (1::1193::5::978300760)
@@ -74,9 +80,11 @@ CREATE TABLE ratings (
     ratings_timestamp int COMMENT 'record insert timestamp'
 )
 COMMENT 'This is the rating data'
-ROW FORMAT DELIMITED FIELDS TERMINATED BY '\::'
+ROW FORMAT DELIMITED FIELDS TERMINATED BY '^'
 LINES TERMINATED BY '\n'
 STORED AS TEXTFILE;
+
+CREATE INDEX index_ratings ON TABLE ratings(user_id) AS 'org.apache.hadoop.hive.ql.index.compact.CompactIndexHandler' WITH DEFERRED REBUILD ;
 
 
 
@@ -88,3 +96,12 @@ LOAD DATA LOCAL INPATH '/home/master/moviedata/ratings.dat' OVERWRITE INTO TABLE
 LOAD DATA LOCAL INPATH '/home/master/moviedata/occupations.dat' OVERWRITE INTO TABLE occupations;
 LOAD DATA LOCAL INPATH '/home/master/moviedata/users.dat' OVERWRITE INTO TABLE users;
 LOAD DATA LOCAL INPATH '/home/master/moviedata/age.dat' OVERWRITE INTO TABLE age;
+
+ALTER INDEX index_ratings ON ratings rebuild;
+
+
+SELECT * FROM ott.movies LIMIT 10;
+SELECT * FROM ott.ratings LIMIT 10;
+SELECT * FROM ott.occupations LIMIT 10;
+SELECT * FROM ott.users LIMIT 10;
+SELECT * FROM ott.age LIMIT 10;

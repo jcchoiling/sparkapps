@@ -48,6 +48,7 @@ Check the jdbc login
     hive -f <hive-script.sql> -- execute the hive script
     hive -S -e "SELECT * FROM worker" >> /usr/local/hive210/hiveTmp/hiveresults.txt
     set.hive.map.aggr = true
+    
 
 
 
