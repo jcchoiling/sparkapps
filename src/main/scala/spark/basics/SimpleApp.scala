@@ -16,7 +16,7 @@ object SimpleApp {
     val conf = new SparkConf().setAppName("SimpleApp").setMaster("local")
     val sc = new SparkContext(conf)
 
-    val words = sc.textFile(dataPath + "spark.txt")
+    val words = sc.textFile(dataPath + "general/spark.txt")
       .flatMap(_.split(" "))
       .map(m => (m,1)).reduceByKey(_+_)
 
