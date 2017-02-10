@@ -2,7 +2,8 @@
 This section serves as a quick guide for looking up the sql syntax.
 
 ## PostgresSQL
-[to be updated]
+
+    psql -h localhost -d postgres -U postgres
 
 ## MySQL
 [to be updated]
@@ -27,7 +28,7 @@ This section serves as a quick guide for looking up the sql syntax.
 
 #### Steps to enable hive metastore and hiveServer2
     hive --service hiveserver2
-    service hive-metastore start
+    nohup hive --service metastore &
 
 Check the jdbc login
 
