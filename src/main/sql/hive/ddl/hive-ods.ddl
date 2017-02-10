@@ -1,8 +1,9 @@
-CREATE SCHEMA ods;
-use ods;
-show tables;
+--CREATE SCHEMA ods;
+--use ods;
+--show tables;
 
 --tbDate table creation
+DROP TABLE IF EXISTS ods.tb_date;
 CREATE TABLE ods.tb_date(
     dataID string,
     theyearmonth string,
@@ -20,6 +21,7 @@ LINES TERMINATED BY '\n';
 
 
 --tbStock table creation
+DROP TABLE IF EXISTS ods.tb_stock;
 CREATE TABLE ods.tb_stock(
     ordernumber STRING,
     locatitionid string,
@@ -30,13 +32,14 @@ LINES TERMINATED BY '\n';
 
 
 --tbStockDetail table creation
+DROP TABLE IF EXISTS ods.tb_stock_detail;
 CREATE TABLE ods.tb_stock_detail(
     ordernumber STRING,
     rownum int,
     itemid string,
     qty int,
     price int,
-    amout int
+    amount int
 )
 ROW FORMAT DELIMITED FIELDS TERMINATED BY ','
 LINES TERMINATED BY '\n';
@@ -46,3 +49,4 @@ LINES TERMINATED BY '\n';
 LOAD DATA LOCAL INPATH '/home/master/sales/tbDate.txt' INTO TABLE ods.tb_date;
 LOAD DATA LOCAL INPATH '/home/master/sales/tbStock.txt' INTO TABLE ods.tb_stock;
 LOAD DATA LOCAL INPATH '/home/master/sales/tbStockDetail.txt' INTO TABLE ods.tb_stock_detail;
+
