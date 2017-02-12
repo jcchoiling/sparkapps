@@ -20,7 +20,9 @@ LINES TERMINATED BY '\n'
 STORED AS TEXTFILE;
 
 --建立索引一般都会有 partition
-CREATE INDEX index_movies ON TABLE movies(movie_id) AS 'org.apache.hadoop.hive.ql.index.compact.CompactIndexHandler' WITH DEFERRED REBUILD ;
+CREATE INDEX index_movies ON TABLE movies(movie_id)
+AS 'org.apache.hadoop.hive.ql.index.compact.CompactIndexHandler'
+WITH DEFERRED REBUILD ;
 
 ---------------------------------------------
 --Age information: AgeID::AgeRange

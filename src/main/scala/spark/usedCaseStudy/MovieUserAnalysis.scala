@@ -26,7 +26,7 @@ object MovieUserAnalysis {
     Logger.getLogger("org").setLevel(Level.WARN)
 
     var masterUrl = "local[1]"  //默认程序运行在本地Local模式中，主要是学习和测试
-    var dataPath = "data/source/moviedata/" //数据存放的目录
+    var dataPath = "src/main/resources/moviedata/" //数据存放的目录
 
     /**
       * 当我们把程序打包运行在集群上的时候一般都会传入集群的URL信息，在这里我们假设如果传入
@@ -55,11 +55,11 @@ object MovieUserAnalysis {
     val ratingsRDD = sc.textFile(dataPath + "ratings.dat")
 
     //UserID::Gender::Age::OccupationID
-    val usersBasic = usersRDD.map(_.split("::")).map {user =>
+    val usersBasic = usersRDD.map(_.split("^")).map {user =>
       (user(3),(user(0), user(1), user(2)))
     }
 
-    val occupations = occupationsRDD.map(_.split("::")).map(job => (job(0), job(1)))
+    val occupations = occupationsRDD.map(_.split("^")).map(job => (job(0), job(1)))
 
     val userInformation = usersBasic.join(occupations)
 
@@ -70,7 +70,7 @@ object MovieUserAnalysis {
 //    }
 
     //"ratings.dat"：UserID::MovieID::Rating::Timestamp
-    val targetMovie  = ratingsRDD.map(_.split("::")).map(x => (x(0),x(1))).filter(_._2.equals("1193"))
+    val targetMovie  = ratingsRDD.map(_.split("^")).map(x => (x(0),x(1))).filter(_._2.equals("1193"))
 
     //(10,((5844,F,1),K-12 student))
     val targetUsers = userInformation.map(x => (x._2._1._1, x._2))

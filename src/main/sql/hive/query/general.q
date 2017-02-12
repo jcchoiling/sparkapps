@@ -25,3 +25,13 @@ SELECT name, size(salaries)as salaries_length FROM employee_array;
 SELECT * FROM employee_array WHERE array_contains(salaries,12000);
 
 EXPLAIN SELECT * FROM worker;
+
+FROM (
+ SELECT name FROM worker where salary  > 2000
+) e
+SELECT e.name;
+
+--DISTRIBUTE BY works similar to GROUP BY in the sense that it controls how reducers receive rows for processing,
+--while SORT BY controls the sorting of data inside the reducer.
+
+SELECT s.ymd, s.symbol, s.price_close FROM stocks s DISTRIBUTE BY s.symbol SORT BY s.symbol ASC, s.ymd ASC;
