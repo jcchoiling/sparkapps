@@ -1,0 +1,56 @@
+--postgresSQL DDL
+-- show the schama name: \dn
+
+CREATE SCHEMA IF NOT EXISTS dm;
+
+DROP TABLE IF EXISTS dm.movies;
+CREATE TABLE dm.movies (
+    movie_id INT NOT NULL,
+    title VARCHAR(50) NULL,
+    genres VARCHAR(50) NULL,
+    PRIMARY KEY (movie_id)
+);
+
+
+DROP TABLE IF EXISTS dm.age;
+CREATE TABLE dm.age (
+    age_id INT NOT NULL,
+    age_range VARCHAR(50) NULL,
+    PRIMARY KEY (age_id)
+);
+
+
+DROP TABLE IF EXISTS dm.users;
+CREATE TABLE dm.users (
+    user_id INT NOT NULL,
+    gender VARCHAR(50) NULL,
+    age_id INT NULL,
+    occupation_id INT NULL,
+    zip_code INT NULL,
+    PRIMARY KEY (user_id)
+);
+
+
+DROP TABLE IF EXISTS dm.occupations;
+CREATE TABLE dm.occupations (
+    occupation_id INT NOT NULL,
+    occupation_name VARCHAR(50) NULL,
+    PRIMARY KEY (occupation_id)
+);
+
+
+DROP TABLE IF EXISTS dm.ratings;
+CREATE TABLE dm.ratings (
+    user_id INT NOT NULL,
+    movie_id INT NOT NULL,
+    rating INT NULL,
+    ratings_timestamp INT NULL,
+    PRIMARY KEY (user_id)
+);
+
+
+
+
+
+
+

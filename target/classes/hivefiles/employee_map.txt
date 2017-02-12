@@ -1,0 +1,9 @@
+0^Hadoop^America^1st=5000|2nd=8000|3rd=12000^male
+1^Spark^America^1st=8000|2nd=810000|3rd=15000^female
+2^Flink^America^1st=7000|2nd=88000|3rd=13000^male
+3^Hadoop^America^1st=9000|2nd=811000|3rd=12000^female
+4^Spark^America^1st=10000|2nd=811000|3rd=12000^male
+5^Flink^America^1st=11000|2nd=812000|3rd=18000^female
+6^Hadoop^America^1st=15000|2nd=816000|3rd=19000^male
+7^Spark^America^1st=18000|2nd=819000|3rd=20000^male
+8^Flink^America^1st=28000|2nd=829000|3rd=32000^male

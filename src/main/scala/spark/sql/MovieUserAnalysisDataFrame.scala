@@ -1,9 +1,11 @@
 package spark.sql
 
-import org.apache.log4j.{Level, Logger}
-import org.apache.spark.{SparkConf, SparkContext}
 
-import scala.collection.mutable
+import org.apache.log4j.{Level, Logger}
+import org.apache.spark.sql.{Row, SparkSession}
+import org.apache.spark.sql.types.{DoubleType, StringType, StructField, StructType}
+import org.apache.spark.SparkConf
+
 
 /**
   * 版权：DT大数据梦工厂所有
@@ -22,14 +24,14 @@ import scala.collection.mutable
   *  3，"movies.dat"：MovieID::Title::Genres
   *  4, "occupations.dat"：OccupationID::OccupationName   一般情况下都会以程序中数据结构Haskset的方式存在，是为了做mapjoin
   */
+
 object MovieUserAnalysisDataFrame {
   def main(args: Array[String]) {
 
-    Logger.getLogger("org").setLevel(Level.INFO)
+    Logger.getLogger("org").setLevel(Level.WARN)
 
     var masterUrl = "local[1]"  //默认程序运行在本地Local模式中，主要是学习和测试
     var dataPath = "src/main/resources/moviedata/" //数据存放的目录
-
 
     if (args.length > 0) {
       masterUrl = args(0)
@@ -37,8 +39,93 @@ object MovieUserAnalysisDataFrame {
       dataPath = args(1)
     }
 
+    val sparkConf = new SparkConf().setMaster(masterUrl).setAppName("MovieUserAnalysisDataFrame")
 
-    sc.stop()
+    val spark = SparkSession
+      .builder()
+      .config(sparkConf)
+      .getOrCreate()
+
+    val sc = spark.sparkContext
+
+    val usersRDD = sc.textFile(dataPath + "users.dat")
+    val moviesRDD = sc.textFile(dataPath + "movies.dat")
+    val occupationsRDD = sc.textFile(dataPath + "occupations.dat")
+    val ratingsRDD = sc.textFile(dataPath + "ratings.dat")
+
+    import spark.implicits._
+
+
+
+    val userSchema = StructType("UserID::Gender::Age::OccupationID::Zip-code".split("::")
+      .map(col => StructField(col, StringType, true)))
+    val usersRDDRows = usersRDD.map(_.split("::"))
+      .map(attr => Row(attr(0).trim,attr(1).trim,attr(2).trim,attr(3).trim,attr(4).trim))
+    val usersDF = spark.createDataFrame(usersRDDRows, userSchema)
+
+    val ratingSchema = StructType("UserID::MovieID".split("::")
+      .map(col => StructField(col, StringType, true)))
+      .add("Rating", DoubleType, true)
+      .add("Timestamp", StringType, true)
+
+    val ratingsRDDRows = ratingsRDD.map(_.split("::"))
+      .map(attr => Row(attr(0).trim,attr(1).trim,attr(2).trim.toDouble,attr(3).trim))
+    val ratingsDF = spark.createDataFrame(ratingsRDDRows, ratingSchema)
+
+//    println("功能一：通过DataFrame实现某特定电影观看者中男性和女性不同年龄分别有多少人: ")
+//    ratingsDF.filter(s" MovieID = 1193")
+//      .join(usersDF, "UserID")
+//      .select("Gender","Age")
+//      .groupBy("Gender","Age")
+//      .count()
+//      .show(10)
+
+//    println("功能二：用GlobalTempView的SQL语句实现某特定电影观看者中男性和女性不同年龄分别有多少人？")
+//    ratingsDF.createGlobalTempView("ratings_global")
+//    usersDF.createGlobalTempView("users_global")
+
+//    spark.sql(
+//      "SELECT u.Gender, u.Age, count(*) " +
+//      "FROM global_temp.ratings_global r " +
+//      "JOIN global_temp.users_global u " +
+//      "ON r.UserID = u.UserID " +
+//      "WHERE r.MovieID = 1193 " +
+//      "GROUP BY u.Gender, u.Age"
+//    ).show(10)
+//
+//    ratingsDF.createOrReplaceTempView("ratings")
+//    usersDF.createOrReplaceTempView("users")
+//
+//    spark.sql(
+//      "SELECT u.Gender, u.Age, count(*) " +
+//        "FROM ratings r " +
+//        "JOIN users u " +
+//        "ON r.UserID = u.UserID " +
+//        "WHERE r.MovieID = 1193 " +
+//        "GROUP BY u.Gender, u.Age"
+//    ).show(10)
+
+
+//    val avgDataRDD = ratingsDF.select("MovieID","Rating").groupBy("MovieID").avg("Rating").rdd
+//    avgDataRDD.map(row => (row(1),(row(0),row(1))))
+//      .sortBy(_._1.toString.toDouble, false)
+//      .map(tuple => tuple._2)
+//      .take(10)
+//      .foreach(println)
+
+
+    ratingsDF.select("MovieID").groupBy("MovieID")
+      .count().rdd
+      .map(row => (row(1),(row(0),row(1))))
+      .sortBy(_._1.toString.toLong, false)
+      .map(tuple => tuple._2)
+      .collect()
+      .take(10)
+      .foreach(println)
+
+
+
+    spark.stop()
 
 
 
