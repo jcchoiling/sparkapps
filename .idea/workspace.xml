@@ -10,30 +10,82 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="280f132e-4447-48d4-90f4-d73094f7bb16" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/sql/hive/ddl/hive-ods.ddl" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/resources/employee.json" afterPath="$PROJECT_DIR$/src/main/resources/general/employee.json" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/resources/employee.txt" afterPath="$PROJECT_DIR$/src/main/resources/general/employee.txt" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/resources/full_user.avsc" afterPath="$PROJECT_DIR$/src/main/resources/general/full_user.avsc" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/resources/kv1.txt" afterPath="$PROJECT_DIR$/src/main/resources/general/kv1.txt" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/resources/number.txt" afterPath="$PROJECT_DIR$/src/main/resources/general/number.txt" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/resources/people.json" afterPath="$PROJECT_DIR$/src/main/resources/general/people.json" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/resources/people.txt" afterPath="$PROJECT_DIR$/src/main/resources/general/people.txt" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/resources/peopleScore.json" afterPath="$PROJECT_DIR$/src/main/resources/general/peopleScore.json" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/resources/readme.md" afterPath="$PROJECT_DIR$/src/main/resources/general/readme.md" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/resources/spark.txt" afterPath="$PROJECT_DIR$/src/main/resources/general/spark.txt" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/resources/testHiveDriver.txt" afterPath="$PROJECT_DIR$/src/main/resources/general/testHiveDriver.txt" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/resources/user.avsc" afterPath="$PROJECT_DIR$/src/main/resources/general/user.avsc" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/resources/users.avro" afterPath="$PROJECT_DIR$/src/main/resources/general/users.avro" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/resources/users.parquet" afterPath="$PROJECT_DIR$/src/main/resources/general/users.parquet" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/sql/hive/general.q" afterPath="$PROJECT_DIR$/src/main/sql/hive/query/general.q" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/sql/hive/hive-default.ddl" afterPath="$PROJECT_DIR$/src/main/sql/hive/ddl/hive-default.ddl" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/sql/hive/hive-ott.ddl" afterPath="$PROJECT_DIR$/src/main/sql/hive/ddl/hive-ott.ddl" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/sql/hive/movie.q" afterPath="$PROJECT_DIR$/src/main/sql/hive/query/movie.q" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/sql/hive/udf.q" afterPath="$PROJECT_DIR$/src/main/sql/hive/query/udf.q" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/cores/SecondarySorting.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/cores/SecondarySortingKey.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/moviedata/dataforsecondarysorting.dat" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/scala/spark/core/MovieUserAnalysisRDD.scala" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/resources/moviedata/dataforsecondarysorting.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/scala/spark/usedCaseStudy/MovieUserAnalysis2.scala" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/basics/MovieUsersAnalyzer.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/employee.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/employee.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/full_user.avsc" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/kv1.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/number.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/people.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/people.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/peopleScore.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/spark.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/user.avsc" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/users.avro" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/users.parquet" afterPath="" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/basics/MovieUsersAnalyzer.java" afterPath="$PROJECT_DIR$/src/main/java/cores/MovieUsersAnalyzer.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/scala/spark/db/HiveCreateTable.scala" afterPath="$PROJECT_DIR$/src/main/scala/spark/sql/HiveCreateTable.scala" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/scala/spark/db/TestHiveConnection.scala" afterPath="$PROJECT_DIR$/src/main/scala/spark/sql/TestHiveConnection.scala" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/scala/spark/movieAnalysis/MovieAnalysisRDDOps.scala" afterPath="$PROJECT_DIR$/src/main/scala/spark/core/MovieAnalysisRDDOps.scala" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/scala/spark/movieAnalysis/MovieAnalysisSparkSQLOps.scala" afterPath="$PROJECT_DIR$/src/main/scala/spark/sql/MovieAnalysisSparkSQLOps.scala" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/scala/spark/usedCaseStudy/MovieUserAnalysis.scala" afterPath="$PROJECT_DIR$/src/main/scala/spark/sql/MovieUserAnalysisDataFrame.scala" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/sql/rdbms/dim.ddl" afterPath="$PROJECT_DIR$/src/main/sql/rdbms/postgres-ddl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/basics/SimpleApp$.class" afterPath="$PROJECT_DIR$/target/classes/basics/SimpleApp$.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/cores/MovieUserAnalysis$$anonfun$1.class" afterPath="$PROJECT_DIR$/target/classes/cores/MovieUserAnalysis$$anonfun$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/cores/MovieUserAnalysis$$anonfun$10.class" afterPath="$PROJECT_DIR$/target/classes/cores/MovieUserAnalysis$$anonfun$10.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/cores/MovieUserAnalysis$$anonfun$11.class" afterPath="$PROJECT_DIR$/target/classes/cores/MovieUserAnalysis$$anonfun$11.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/cores/MovieUserAnalysis$$anonfun$12.class" afterPath="$PROJECT_DIR$/target/classes/cores/MovieUserAnalysis$$anonfun$12.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/cores/MovieUserAnalysis$$anonfun$13.class" afterPath="$PROJECT_DIR$/target/classes/cores/MovieUserAnalysis$$anonfun$13.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/cores/MovieUserAnalysis$$anonfun$14.class" afterPath="$PROJECT_DIR$/target/classes/cores/MovieUserAnalysis$$anonfun$14.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/cores/MovieUserAnalysis$$anonfun$15.class" afterPath="$PROJECT_DIR$/target/classes/cores/MovieUserAnalysis$$anonfun$15.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/cores/MovieUserAnalysis$$anonfun$16.class" afterPath="$PROJECT_DIR$/target/classes/cores/MovieUserAnalysis$$anonfun$16.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/cores/MovieUserAnalysis$$anonfun$17.class" afterPath="$PROJECT_DIR$/target/classes/cores/MovieUserAnalysis$$anonfun$17.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/cores/MovieUserAnalysis$$anonfun$18.class" afterPath="$PROJECT_DIR$/target/classes/cores/MovieUserAnalysis$$anonfun$18.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/cores/MovieUserAnalysis$$anonfun$19.class" afterPath="$PROJECT_DIR$/target/classes/cores/MovieUserAnalysis$$anonfun$19.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/cores/MovieUserAnalysis$$anonfun$2.class" afterPath="$PROJECT_DIR$/target/classes/cores/MovieUserAnalysis$$anonfun$2.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/cores/MovieUserAnalysis$$anonfun$20.class" afterPath="$PROJECT_DIR$/target/classes/cores/MovieUserAnalysis$$anonfun$20.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/cores/MovieUserAnalysis$$anonfun$21.class" afterPath="$PROJECT_DIR$/target/classes/cores/MovieUserAnalysis$$anonfun$21.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/cores/MovieUserAnalysis$$anonfun$22.class" afterPath="$PROJECT_DIR$/target/classes/cores/MovieUserAnalysis$$anonfun$22.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/cores/MovieUserAnalysis$$anonfun$23.class" afterPath="$PROJECT_DIR$/target/classes/cores/MovieUserAnalysis$$anonfun$23.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/cores/MovieUserAnalysis$$anonfun$24.class" afterPath="$PROJECT_DIR$/target/classes/cores/MovieUserAnalysis$$anonfun$24.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/cores/MovieUserAnalysis$$anonfun$25.class" afterPath="$PROJECT_DIR$/target/classes/cores/MovieUserAnalysis$$anonfun$25.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/cores/MovieUserAnalysis$$anonfun$26.class" afterPath="$PROJECT_DIR$/target/classes/cores/MovieUserAnalysis$$anonfun$26.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/cores/MovieUserAnalysis$$anonfun$27.class" afterPath="$PROJECT_DIR$/target/classes/cores/MovieUserAnalysis$$anonfun$27.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/cores/MovieUserAnalysis$$anonfun$28.class" afterPath="$PROJECT_DIR$/target/classes/cores/MovieUserAnalysis$$anonfun$28.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/cores/MovieUserAnalysis$$anonfun$29.class" afterPath="$PROJECT_DIR$/target/classes/cores/MovieUserAnalysis$$anonfun$29.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/cores/MovieUserAnalysis$$anonfun$3.class" afterPath="$PROJECT_DIR$/target/classes/cores/MovieUserAnalysis$$anonfun$3.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/cores/MovieUserAnalysis$$anonfun$30.class" afterPath="$PROJECT_DIR$/target/classes/cores/MovieUserAnalysis$$anonfun$30.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/cores/MovieUserAnalysis$$anonfun$31.class" afterPath="$PROJECT_DIR$/target/classes/cores/MovieUserAnalysis$$anonfun$31.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/cores/MovieUserAnalysis$$anonfun$32.class" afterPath="$PROJECT_DIR$/target/classes/cores/MovieUserAnalysis$$anonfun$32.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/cores/MovieUserAnalysis$$anonfun$33.class" afterPath="$PROJECT_DIR$/target/classes/cores/MovieUserAnalysis$$anonfun$33.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/cores/MovieUserAnalysis$$anonfun$34.class" afterPath="$PROJECT_DIR$/target/classes/cores/MovieUserAnalysis$$anonfun$34.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/cores/MovieUserAnalysis$$anonfun$35.class" afterPath="$PROJECT_DIR$/target/classes/cores/MovieUserAnalysis$$anonfun$35.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/cores/MovieUserAnalysis$$anonfun$4.class" afterPath="$PROJECT_DIR$/target/classes/cores/MovieUserAnalysis$$anonfun$4.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/cores/MovieUserAnalysis$$anonfun$5.class" afterPath="$PROJECT_DIR$/target/classes/cores/MovieUserAnalysis$$anonfun$5.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/cores/MovieUserAnalysis$$anonfun$6.class" afterPath="$PROJECT_DIR$/target/classes/cores/MovieUserAnalysis$$anonfun$6.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/cores/MovieUserAnalysis$$anonfun$7.class" afterPath="$PROJECT_DIR$/target/classes/cores/MovieUserAnalysis$$anonfun$7.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/cores/MovieUserAnalysis$$anonfun$8.class" afterPath="$PROJECT_DIR$/target/classes/cores/MovieUserAnalysis$$anonfun$8.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/cores/MovieUserAnalysis$$anonfun$9.class" afterPath="$PROJECT_DIR$/target/classes/cores/MovieUserAnalysis$$anonfun$9.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/cores/MovieUserAnalysis$$anonfun$main$1.class" afterPath="$PROJECT_DIR$/target/classes/cores/MovieUserAnalysis$$anonfun$main$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/cores/MovieUserAnalysis$$anonfun$main$2.class" afterPath="$PROJECT_DIR$/target/classes/cores/MovieUserAnalysis$$anonfun$main$2.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/cores/MovieUserAnalysis$$anonfun$main$3.class" afterPath="$PROJECT_DIR$/target/classes/cores/MovieUserAnalysis$$anonfun$main$3.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/cores/MovieUserAnalysis$$anonfun$main$4.class" afterPath="$PROJECT_DIR$/target/classes/cores/MovieUserAnalysis$$anonfun$main$4.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/cores/MovieUserAnalysis$$anonfun$main$5.class" afterPath="$PROJECT_DIR$/target/classes/cores/MovieUserAnalysis$$anonfun$main$5.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/cores/MovieUserAnalysis$.class" afterPath="$PROJECT_DIR$/target/classes/cores/MovieUserAnalysis$.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/META-INF/MANIFEST.MF" afterPath="$PROJECT_DIR$/src/main/java/META-INF/MANIFEST.MF" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/scala/spark/basics/SimpleApp.scala" afterPath="$PROJECT_DIR$/src/main/scala/spark/basics/SimpleApp.scala" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/sql/README.md" afterPath="$PROJECT_DIR$/src/main/sql/README.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sparkapps.iml" afterPath="$PROJECT_DIR$/sparkapps.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/moviedata/dataforsecondarysorting.txt" afterPath="$PROJECT_DIR$/target/classes/moviedata/dataforsecondarysorting.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/moviedata/movies.dat" afterPath="$PROJECT_DIR$/target/classes/moviedata/movies.dat" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/moviedata/occupations.dat" afterPath="$PROJECT_DIR$/target/classes/moviedata/occupations.dat" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/moviedata/ratings.dat" afterPath="$PROJECT_DIR$/target/classes/moviedata/ratings.dat" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/moviedata/users.dat" afterPath="$PROJECT_DIR$/target/classes/moviedata/users.dat" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/readme.md" afterPath="$PROJECT_DIR$/target/classes/readme.md" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -48,13 +100,56 @@
     <option name="PATCH_PATH" value="" />
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
+  <component name="FavoritesManager">
+    <favorites_list name="sparkapps" />
+  </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="hive-ods.ddl" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/sql/hive/ddl/hive-ods.ddl">
-          <provider selected="true" editor-type-id="OdpsQlEditor">
-            <state relative-caret-position="376">
-              <caret line="35" column="18" lean-forward="true" selection-start-line="35" selection-start-column="18" selection-end-line="35" selection-end-column="18" />
+      <file leaf-file-name="MovieUserAnalysisRDD.scala" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/scala/spark/core/MovieUserAnalysisRDD.scala">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="15">
+              <caret line="24" column="7" lean-forward="false" selection-start-line="24" selection-start-column="7" selection-end-line="24" selection-end-column="7" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MovieAnalysisRDDOps.scala" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/scala/spark/core/MovieAnalysisRDDOps.scala">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="150">
+              <caret line="11" column="7" lean-forward="false" selection-start-line="11" selection-start-column="7" selection-end-line="11" selection-end-column="7" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MovieAnalysisSparkSQLOps.scala" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/scala/spark/sql/MovieAnalysisSparkSQLOps.scala">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="150">
+              <caret line="10" column="7" lean-forward="false" selection-start-line="10" selection-start-column="7" selection-end-line="10" selection-end-column="7" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MovieUserAnalysisDataFrame.scala" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/scala/spark/sql/MovieUserAnalysisDataFrame.scala">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="320">
+              <caret line="32" column="0" lean-forward="true" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TestHiveConnection.scala" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/scala/spark/sql/TestHiveConnection.scala">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="105">
+              <caret line="7" column="7" lean-forward="false" selection-start-line="7" selection-start-column="7" selection-end-line="7" selection-end-column="7" />
               <folding />
             </state>
           </provider>
@@ -65,8 +160,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Python Script" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -82,11 +177,14 @@
       <find>|</find>
       <find>,</find>
       <find>::</find>
+      <find>^</find>
+      <find>&quot;</find>
     </findStrings>
     <replaceStrings>
       <replace>,\</replace>
       <replace>|</replace>
       <replace>^</replace>
+      <replace>::</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -100,24 +198,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/resources/spark.txt" />
-        <option value="$PROJECT_DIR$/src/main/scala/adsClickedAnalysis/AdvClickedStreamingStats.scala" />
-        <option value="$PROJECT_DIR$/src/main/scala/spark/basics/SimpleApp.scala" />
-        <option value="$PROJECT_DIR$/src/main/sql/dim.ddl" />
-        <option value="$PROJECT_DIR$/src/main/scala/spark/basics/HiSpark.scala" />
-        <option value="$PROJECT_DIR$/src/main/scala/spark/movieAnalysis/MovieAnalysisOps.scala" />
-        <option value="$PROJECT_DIR$/src/main/scala/spark/movieAnalysis/MovieAnalysisRDDOps.scala" />
-        <option value="$PROJECT_DIR$/src/main/scala/spark/movieAnalysis/MovieAnalysisSparkSQLOps.scala" />
-        <option value="$PROJECT_DIR$/src/main/scala/spark/basics/postgresApp.scala" />
-        <option value="$PROJECT_DIR$/src/main/python/basics/sample_apps.py" />
-        <option value="$PROJECT_DIR$/src/main/python/basics/Hive_Table_Creation.py" />
-        <option value="$PROJECT_DIR$/src/main/java/basics/HiveCreateTable.java" />
-        <option value="$PROJECT_DIR$/src/main/java/Hive1.java" />
-        <option value="$PROJECT_DIR$/src/main/java/basics/HiveApps.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/testHiveDriver.txt" />
-        <option value="$PROJECT_DIR$/pom.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/basics/Hive2.java" />
-        <option value="$PROJECT_DIR$/src/main/java/basics/HiveApp.scala" />
         <option value="$PROJECT_DIR$/src/main/resources/hivefiles/person_partitioned.txt" />
         <option value="$PROJECT_DIR$/src/main/sql/hive.ddl" />
         <option value="$PROJECT_DIR$/src/main/java/basics/HiveApp.java" />
@@ -126,10 +206,6 @@
         <option value="$PROJECT_DIR$/src/main/scala/spark/db/HiveConnection.scala" />
         <option value="$PROJECT_DIR$/src/main/scala/spark/db/TestHiveConnection.scala" />
         <option value="$PROJECT_DIR$/src/main/resources/moviedata/README" />
-        <option value="$PROJECT_DIR$/src/main/resources/moviedata/age.dat" />
-        <option value="$PROJECT_DIR$/src/main/resources/moviedata/occupations.dat" />
-        <option value="$PROJECT_DIR$/src/main/resources/moviedata/users.dat" />
-        <option value="$PROJECT_DIR$/src/main/resources/moviedata/movies.dat" />
         <option value="$PROJECT_DIR$/src/main/scala/spark/db/HiveCreateTable.scala" />
         <option value="$PROJECT_DIR$/src/main/sql/movie-rdbms.ddl" />
         <option value="$PROJECT_DIR$/src/main/sql/hive/hive.ddl" />
@@ -141,15 +217,38 @@
         <option value="$PROJECT_DIR$/src/main/resources/hivefiles/employee_struct.txt" />
         <option value="$PROJECT_DIR$/src/main/sql/hive/hive-default.ddl" />
         <option value="$PROJECT_DIR$/src/main/java/basics/HiveUDAF.java" />
-        <option value="$PROJECT_DIR$/src/main/java/basics/HiveUDF.java" />
         <option value="$PROJECT_DIR$/src/main/python/hive/hive_udf.py" />
         <option value="$PROJECT_DIR$/src/main/sql/hive/general.q" />
         <option value="$PROJECT_DIR$/src/main/python/hive/weekday_mapper.py" />
         <option value="$PROJECT_DIR$/src/main/sql/hive/udf.q" />
         <option value="$PROJECT_DIR$/src/main/python/hive/string_mapper.py" />
-        <option value="$PROJECT_DIR$/src/main/sql/README.md" />
         <option value="$PROJECT_DIR$/src/main/resources/ecommerce/Readme.md" />
         <option value="$PROJECT_DIR$/src/main/sql/hive/hive-ods.ddl" />
+        <option value="$PROJECT_DIR$/src/main/resources/general/source.txt" />
+        <option value="$PROJECT_DIR$/src/main/sql/README.md" />
+        <option value="$PROJECT_DIR$/src/main/sql/hive/query/general.q" />
+        <option value="$PROJECT_DIR$/src/main/resources/general/shipment.txt" />
+        <option value="$PROJECT_DIR$/src/main/sql/hive/ddl/hive-ott.ddl" />
+        <option value="$PROJECT_DIR$/src/main/sql/hive/ddl/hive-default.ddl" />
+        <option value="$PROJECT_DIR$/src/main/resources/moviedata/age.dat" />
+        <option value="$PROJECT_DIR$/src/main/resources/moviedata/users.dat" />
+        <option value="$PROJECT_DIR$/src/main/resources/moviedata/movies.dat" />
+        <option value="$PROJECT_DIR$/src/main/resources/moviedata/occupations.dat" />
+        <option value="$PROJECT_DIR$/src/main/sql/rdbms/movie-rdbms.ddl" />
+        <option value="$PROJECT_DIR$/src/main/sql/rdbms/movie-rdbms" />
+        <option value="$PROJECT_DIR$/src/main/java/basics/HiveUDF.java" />
+        <option value="$PROJECT_DIR$/src/main/scala/spark/usedCaseStudy/MovieUserAnalysis2.scala" />
+        <option value="$PROJECT_DIR$/src/main/sql/rdbms/postgres-ddl" />
+        <option value="$PROJECT_DIR$/src/main/scala/spark/usedCaseStudy/MovieUserAnalysis.scala" />
+        <option value="$PROJECT_DIR$/src/main/java/cores/SecondarySortingKey.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/moviedata/dataforsecondarysorting.txt" />
+        <option value="$PROJECT_DIR$/src/main/java/cores/SecondarySorting.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cores/MovieUsersAnalyzer.java" />
+        <option value="$PROJECT_DIR$/src/main/scala/spark/movieAnalysis/MovieUserAnalysis.scala" />
+        <option value="$PROJECT_DIR$/src/main/scala/spark/sql/MovieAnalysisSparkSQLOps.scala" />
+        <option value="$PROJECT_DIR$/src/main/scala/spark/sql/MovieUserAnalysisDataFrame.scala" />
+        <option value="$PROJECT_DIR$/src/main/scala/spark/sql/HiveCreateTable.scala" />
+        <option value="$PROJECT_DIR$/src/main/scala/spark/sql/TestHiveConnection.scala" />
       </list>
     </option>
   </component>
@@ -161,9 +260,10 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="y" value="-863" />
-    <option name="width" value="1280" />
-    <option name="height" value="794" />
+    <option name="x" value="36" />
+    <option name="y" value="23" />
+    <option name="width" value="1244" />
+    <option name="height" value="777" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -184,6 +284,8 @@
     </navigator>
     <panes>
       <pane id="Scratches" />
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -209,8 +311,48 @@
               <option name="myItemId" value="src" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sparkapps" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sparkapps" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sparkapps" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sparkapps" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="scala" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="spark" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -236,29 +378,11 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="sql" />
+              <option name="myItemId" value="scala" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="hive" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="sparkapps" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="sparkapps" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
+              <option name="myItemId" value="spark" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -280,40 +404,16 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="resources" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="sparkapps" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="sparkapps" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="python" />
+              <option name="myItemId" value="scala" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
     <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -327,7 +427,14 @@
       <recent name="$PROJECT_DIR$/src/main/sql/rdbms" />
       <recent name="$PROJECT_DIR$/src/main/sql/hive" />
     </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="cores" />
+      <recent name="" />
+    </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="spark.sql" />
+      <recent name="cores" />
+      <recent name="spark.usedCaseStudy" />
       <recent name="basics" />
       <recent name="spark.db" />
     </key>
@@ -338,75 +445,15 @@
       <recent name="$PROJECT_DIR$/src/main/sql" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.string_mapper">
-    <configuration default="false" name="HiveApp" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
-        <pattern>
-          <option name="PATTERN" value="basics.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="MAIN_CLASS_NAME" value="basics.HiveApp" />
-      <option name="VM_PARAMETERS" />
-      <option name="PROGRAM_PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="ENABLE_SWING_INSPECTOR" value="false" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <module name="sparkapps" />
-      <envs />
-      <method />
-    </configuration>
-    <configuration default="false" name="Hive2" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
-        <pattern>
-          <option name="PATTERN" value="com.dt.spark.hive.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="MAIN_CLASS_NAME" value="com.dt.spark.hive.Hive2" />
-      <option name="VM_PARAMETERS" />
-      <option name="PROGRAM_PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="ENABLE_SWING_INSPECTOR" value="false" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <module name="sparkapps" />
-      <envs />
-      <method />
-    </configuration>
-    <configuration default="false" name="HiveConnection" type="Application" factoryName="Application" temporary="true">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
-        <pattern>
-          <option name="PATTERN" value="spark.db.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="MAIN_CLASS_NAME" value="spark.db.TestHiveConnection" />
-      <option name="VM_PARAMETERS" />
-      <option name="PROGRAM_PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="ENABLE_SWING_INSPECTOR" value="false" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <module name="sparkapps" />
-      <envs />
-      <method />
-    </configuration>
+  <component name="RunManager" selected="Application.MovieUsersAnalyzer">
     <configuration default="false" name="HiveCreateTable" type="Application" factoryName="Application" temporary="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
-          <option name="PATTERN" value="spark.db.*" />
+          <option name="PATTERN" value="spark.sql.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="MAIN_CLASS_NAME" value="spark.db.HiveCreateTable" />
+      <option name="MAIN_CLASS_NAME" value="spark.sql.HiveCreateTable" />
       <option name="VM_PARAMETERS" />
       <option name="PROGRAM_PARAMETERS" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
@@ -434,6 +481,66 @@
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/main/python/hive/string_mapper.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
+      <method />
+    </configuration>
+    <configuration default="false" name="MovieUserAnalysis2" type="Application" factoryName="Application" temporary="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="spark.usedCaseStudy.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="MAIN_CLASS_NAME" value="spark.usedCaseStudy.MovieUserAnalysis2" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="sparkapps" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="MovieUserAnalysis" type="Application" factoryName="Application" temporary="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="spark.sql.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="MAIN_CLASS_NAME" value="spark.core.MovieUserAnalysisRDD" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="sparkapps" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="MovieUsersAnalyzer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="spark.sql.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="MAIN_CLASS_NAME" value="cores.MovieUsersAnalyzer" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="sparkapps" />
+      <envs />
       <method />
     </configuration>
     <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" factoryName="Plugin">
@@ -724,19 +831,6 @@
       <module name="sparkapps" />
       <method />
     </configuration>
-    <configuration default="true" type="executeSpecs" factoryName="Gauge Execution">
-      <setting name="environment" value="" />
-      <setting name="specsToExecute" value="" />
-      <setting name="tags" value="" />
-      <setting name="parallelNodes" value="" />
-      <setting name="execInParallel" value="false" />
-      <setting name="programParameters" value="" />
-      <setting name="workingDirectory" value="" />
-      <setting name="moduleName" value="" />
-      <envMap />
-      <setting name="rowsRange" value="" />
-      <method />
-    </configuration>
     <configuration default="true" type="tests" factoryName="Attests">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -877,20 +971,20 @@
       <method />
     </configuration>
     <list size="6">
-      <item index="0" class="java.lang.String" itemvalue="Application.HiveApp" />
-      <item index="1" class="java.lang.String" itemvalue="Application.Hive2" />
-      <item index="2" class="java.lang.String" itemvalue="Application.HiveConnection" />
-      <item index="3" class="java.lang.String" itemvalue="Application.HiveCreateTable" />
-      <item index="4" class="java.lang.String" itemvalue="Python.hive_udf" />
-      <item index="5" class="java.lang.String" itemvalue="Python.string_mapper" />
+      <item index="0" class="java.lang.String" itemvalue="Python.hive_udf" />
+      <item index="1" class="java.lang.String" itemvalue="Application.HiveCreateTable" />
+      <item index="2" class="java.lang.String" itemvalue="Python.string_mapper" />
+      <item index="3" class="java.lang.String" itemvalue="Application.MovieUserAnalysis2" />
+      <item index="4" class="java.lang.String" itemvalue="Application.MovieUserAnalysis" />
+      <item index="5" class="java.lang.String" itemvalue="Application.MovieUsersAnalyzer" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Python.string_mapper" />
-        <item index="1" class="java.lang.String" itemvalue="Application.HiveCreateTable" />
-        <item index="2" class="java.lang.String" itemvalue="Application.HiveConnection" />
-        <item index="3" class="java.lang.String" itemvalue="Application.HiveApp" />
-        <item index="4" class="java.lang.String" itemvalue="Application.Hive2" />
+        <item index="0" class="java.lang.String" itemvalue="Application.MovieUsersAnalyzer" />
+        <item index="1" class="java.lang.String" itemvalue="Application.MovieUserAnalysis" />
+        <item index="2" class="java.lang.String" itemvalue="Application.MovieUserAnalysis2" />
+        <item index="3" class="java.lang.String" itemvalue="Python.string_mapper" />
+        <item index="4" class="java.lang.String" itemvalue="Application.HiveCreateTable" />
       </list>
     </recent_temporary>
   </component>
@@ -999,11 +1093,27 @@
       <option name="project" value="LOCAL" />
       <updated>1486710236269</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Added answer to the test folder">
+      <created>1486873026250</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1486873026250</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="-863" width="1280" height="794" extended-state="0" />
+    <frame x="36" y="23" width="1244" height="777" extended-state="6" />
     <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1014,22 +1124,22 @@
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="MaxCompute Job Explorer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32875606" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24959612" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24958402" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="MaxCompute Project Explorer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.1631664" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="SBT Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32905984" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32846716" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.44586894" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.519943" sideWeight="0.4970809" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32905984" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2609047" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.51970804" sideWeight="0.4970809" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.38832116" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32846716" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32279533" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="MaxCompute Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="15" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32846716" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Running Info" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="16" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Running Result" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="17" side_tool="true" content_ui="tabs" />
@@ -1041,8 +1151,8 @@
       <window_info id="Execute Anonymous" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Salesforce" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="SBT Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32905984" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="VcsContentAnnotationSettings">
@@ -1051,7 +1161,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="updated" />
     <MESSAGE value="Added a sales data for hive practise" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added a sales data for hive practise" />
+    <MESSAGE value="Added answer to the test folder" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added answer to the test folder" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -1062,195 +1173,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/spark/spark-sql_2.11/2.1.0/spark-sql_2.11-2.1.0-sources.jar!/org/apache/spark/sql/SparkSession.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="53" column="2" lean-forward="true" selection-start-line="53" selection-start-column="2" selection-end-line="53" selection-end-column="2" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/python/basics/sample_apps.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="17" column="0" lean-forward="true" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/python/basics/viu_setting.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="3" lean-forward="true" selection-start-line="6" selection-start-column="3" selection-end-line="6" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/python/basics/setting.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="15" column="20" lean-forward="false" selection-start-line="15" selection-start-column="20" selection-end-line="15" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/python/basics/Hive_Table_Creation.py" />
-    <entry file="file://$PROJECT_DIR$/src/main/resources/general/people.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/scala/spark/movieAnalysis/MovieAnalysisRDDOps.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="17" column="83" lean-forward="false" selection-start-line="17" selection-start-column="83" selection-end-line="17" selection-end-column="83" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/hivefiles/agg_01-p1.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/hivefiles/agg_01-p2.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/hivefiles/agg_01-p3.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Hive1.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/basics/HiveApps.java" />
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3135">
-          <caret line="209" column="21" lean-forward="true" selection-start-line="209" selection-start-column="21" selection-end-line="209" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/general/testHiveDriver.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="6" lean-forward="true" selection-start-line="2" selection-start-column="6" selection-end-line="2" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/scala/spark/movieAnalysis/MovieAnalysisSparkSQLOps.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="21" column="0" lean-forward="true" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/basics/Hive2.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/basics/HiveApp.scala" />
-    <entry file="file://$PROJECT_DIR$/src/main/resources/hivefiles/person_partitioned.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" column="0" lean-forward="true" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/basics/HiveApp.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1050">
-          <caret line="74" column="67" lean-forward="true" selection-start-line="74" selection-start-column="67" selection-end-line="74" selection-end-column="67" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/scala/spark/db/TestHiveConnection.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="8" column="2" lean-forward="false" selection-start-line="8" selection-start-column="2" selection-end-line="8" selection-end-column="2" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/moviedata/README">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-404">
-          <caret line="93" column="0" lean-forward="false" selection-start-line="93" selection-start-column="0" selection-end-line="100" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/scala/spark/basics/postgresApp.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="510">
-          <caret line="35" column="0" lean-forward="true" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/moviedata/occupations_bak.dat" />
-    <entry file="file://$PROJECT_DIR$/src/main/resources/moviedata/age.dat">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="0" lean-forward="true" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/moviedata/occupations.dat">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="2" lean-forward="false" selection-start-line="0" selection-start-column="2" selection-end-line="0" selection-end-column="2" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/moviedata/ratings.dat">
-      <provider selected="true" editor-type-id="LargeFileEditor">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/moviedata/movies.dat">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="28" lean-forward="true" selection-start-line="8" selection-start-column="28" selection-end-line="8" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/scala/spark/db/HiveCreateTable.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="397">
-          <caret line="30" column="15" lean-forward="false" selection-start-line="30" selection-start-column="15" selection-end-line="30" selection-end-column="15" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/moviedata/users.dat">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="646">
-          <caret line="6040" column="0" lean-forward="false" selection-start-line="6040" selection-start-column="0" selection-end-line="6040" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/sql/rdbms/dim.ddl">
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="1590">
-          <caret line="106" column="37" lean-forward="true" selection-start-line="106" selection-start-column="37" selection-end-line="106" selection-end-column="37" />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="OdpsQlEditor">
-        <state relative-caret-position="1410">
-          <caret line="94" column="22" lean-forward="true" selection-start-line="94" selection-start-column="22" selection-end-line="94" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/sql/rdbms/movie-rdbms.ddl">
-      <provider selected="true" editor-type-id="OdpsQlEditor">
-        <state relative-caret-position="135">
-          <caret line="9" column="2" lean-forward="true" selection-start-line="9" selection-start-column="2" selection-end-line="9" selection-end-column="2" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/bballStat/leagues_NBA_1970_per_game_per_game.csv">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1979">
@@ -1276,7 +1198,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="208">
           <caret line="31" column="28" lean-forward="true" selection-start-line="31" selection-start-column="28" selection-end-line="31" selection-end-column="28" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1308,39 +1229,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/basics/HiveUDAF.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" column="1" lean-forward="true" selection-start-line="12" selection-start-column="1" selection-end-line="12" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/basics/HiveUDF.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" column="19" lean-forward="false" selection-start-line="10" selection-start-column="19" selection-end-line="10" selection-end-column="19" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/basics/HiveUDAF.java" />
     <entry file="file://$PROJECT_DIR$/src/main/python/hive/weekday_mapper.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="183">
           <caret line="19" column="29" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
-          <folding>
-            <element signature="e#94#104#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/sql/hive/ddl/hive-default.ddl">
-      <provider selected="true" editor-type-id="OdpsQlEditor">
-        <state relative-caret-position="195">
-          <caret line="13" column="64" lean-forward="false" selection-start-line="13" selection-start-column="57" selection-end-line="13" selection-end-column="64" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1348,32 +1241,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="225">
           <caret line="16" column="0" lean-forward="true" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/sql/hive/query/general.q">
-      <provider selected="true" editor-type-id="OdpsQlEditor">
-        <state relative-caret-position="315">
-          <caret line="21" column="23" lean-forward="true" selection-start-line="21" selection-start-column="23" selection-end-line="21" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/sql/README.md">
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="48" column="48" lean-forward="true" selection-start-line="48" selection-start-column="48" selection-end-line="48" selection-end-column="48" />
-          <folding />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="615">
-            <caret line="71" column="30" lean-forward="false" selection-start-line="71" selection-start-column="30" selection-end-line="71" selection-end-column="30" />
-            <folding />
-          </first_editor>
-          <second_editor />
         </state>
       </provider>
     </entry>
@@ -1382,7 +1249,6 @@
         <state split_layout="FIRST">
           <first_editor relative-caret-position="150">
             <caret line="10" column="14" lean-forward="true" selection-start-line="10" selection-start-column="14" selection-end-line="10" selection-end-column="14" />
-            <folding />
           </first_editor>
           <second_editor />
         </state>
@@ -1392,7 +1258,6 @@
       <provider selected="true" editor-type-id="OdpsQlEditor">
         <state relative-caret-position="180">
           <caret line="12" column="15" lean-forward="true" selection-start-line="12" selection-start-column="15" selection-end-line="12" selection-end-column="15" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1400,22 +1265,308 @@
       <provider selected="true" editor-type-id="OdpsQlEditor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/sql/README.md">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="48" column="48" lean-forward="true" selection-start-line="48" selection-start-column="48" selection-end-line="48" selection-end-column="48" />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="FIRST">
+          <first_editor relative-caret-position="393">
+            <caret line="52" column="42" lean-forward="false" selection-start-line="52" selection-start-column="42" selection-end-line="52" selection-end-column="42" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/sql/hive/query/general.q">
+      <provider selected="true" editor-type-id="OdpsQlEditor">
+        <state relative-caret-position="554">
+          <caret line="37" column="0" lean-forward="true" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/general/source.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" column="69" lean-forward="true" selection-start-line="3" selection-start-column="69" selection-end-line="3" selection-end-column="69" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/general/employee.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="44" lean-forward="true" selection-start-line="4" selection-start-column="44" selection-end-line="4" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/general/shipment.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" column="0" lean-forward="true" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/hive/hive-exec/2.1.0/hive-exec-2.1.0.jar!/org/apache/hadoop/hive/ql/metadata/Hive.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/hive/hive-exec/2.1.0/hive-exec-2.1.0.jar!/org/apache/hive/spark/client/JobHandle.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="15" column="17" lean-forward="false" selection-start-line="15" selection-start-column="17" selection-end-line="15" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/hive/hive-exec/2.1.0/hive-exec-2.1.0.jar!/org/apache/hadoop/hive/ql/QueryPlan.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-3830">
+          <caret line="53" column="13" lean-forward="false" selection-start-line="53" selection-start-column="13" selection-end-line="53" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/moviedata/age.dat">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" column="4" lean-forward="false" selection-start-line="6" selection-start-column="4" selection-end-line="6" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/moviedata/ratings.dat">
+      <provider selected="true" editor-type-id="LargeFileEditor">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/moviedata/movies.dat">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="58180">
+          <caret line="3882" column="29" lean-forward="false" selection-start-line="3882" selection-start-column="29" selection-end-line="3882" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/moviedata/users.dat">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="295">
+          <caret line="6039" column="16" lean-forward="false" selection-start-line="6039" selection-start-column="16" selection-end-line="6039" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/moviedata/occupations.dat">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="20" column="4" lean-forward="false" selection-start-line="20" selection-start-column="4" selection-end-line="20" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/spark/spark-core_2.11/2.1.0/spark-core_2.11-2.1.0-sources.jar!/org/apache/spark/rdd/RDD.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-115">
+          <caret line="1325" column="6" lean-forward="false" selection-start-line="1325" selection-start-column="6" selection-end-line="1325" selection-end-column="6" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/sql/hive/ddl/hive-ott.ddl">
+    <entry file="file://$PROJECT_DIR$/src/main/sql/hive/ddl/hive-default.ddl">
       <provider selected="true" editor-type-id="OdpsQlEditor">
-        <state relative-caret-position="45">
-          <caret line="3" column="0" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="5" selection-end-column="12" />
+        <state relative-caret-position="104">
+          <caret line="80" column="0" lean-forward="true" selection-start-line="80" selection-start-column="0" selection-end-line="80" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/sql/hive/ddl/hive-ods.ddl">
       <provider selected="true" editor-type-id="OdpsQlEditor">
-        <state relative-caret-position="376">
-          <caret line="35" column="18" lean-forward="true" selection-start-line="35" selection-start-column="18" selection-end-line="35" selection-end-column="18" />
+        <state relative-caret-position="284">
+          <caret line="35" column="18" lean-forward="false" selection-start-line="35" selection-start-column="18" selection-end-line="35" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/basics/HiveUDF.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="13" column="0" lean-forward="true" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/sql/hive/ddl/hive-ott.ddl">
+      <provider selected="true" editor-type-id="OdpsQlEditor">
+        <state relative-caret-position="270">
+          <caret line="84" column="33" lean-forward="true" selection-start-line="84" selection-start-column="33" selection-end-line="84" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/sql/rdbms/movie-rdbms">
+      <provider selected="true" editor-type-id="OdpsQlEditor">
+        <state relative-caret-position="210">
+          <caret line="14" column="28" lean-forward="true" selection-start-line="14" selection-start-column="28" selection-end-line="14" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/scala/MovieAnalysis_Answer/Movie_Users_Analyzer_DateSet.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-4035">
+          <caret line="27" column="7" lean-forward="false" selection-start-line="27" selection-start-column="7" selection-end-line="27" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/scala/spark/usedCaseStudy/MovieUserAnalysis2.scala" />
+    <entry file="file://$PROJECT_DIR$/src/test/scala/MovieAnalysis_Answer/Movie_Users_Analyzer_RDD.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-430">
+          <caret line="82" column="25" lean-forward="true" selection-start-line="82" selection-start-column="25" selection-end-line="82" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/spark/spark-core_2.11/2.1.0/spark-core_2.11-2.1.0-sources.jar!/org/apache/spark/SparkContext.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-18670">
+          <caret line="1406" column="6" lean-forward="false" selection-start-line="1406" selection-start-column="6" selection-end-line="1406" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/sql/rdbms/postgres-ddl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="OdpsQlEditor">
+        <state relative-caret-position="1020">
+          <caret line="68" column="21" lean-forward="false" selection-start-line="68" selection-start-column="21" selection-end-line="68" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/general/employee.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="16" lean-forward="false" selection-start-line="4" selection-start-column="16" selection-end-line="4" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cores/SecondarySortingKey.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="24" column="5" lean-forward="true" selection-start-line="24" selection-start-column="5" selection-end-line="24" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#234#235#0" expanded="true" />
+            <element signature="e#262#263#0" expanded="true" />
+            <element signature="e#301#302#0" expanded="true" />
+            <element signature="e#335#336#0" expanded="true" />
+            <element signature="e#365#366#0" expanded="true" />
+            <element signature="e#394#395#0" expanded="true" />
+            <element signature="e#435#436#0" expanded="true" />
+            <element signature="e#471#472#0" expanded="true" />
+            <element signature="e#1134#1135#0" expanded="true" />
+            <element signature="e#1173#1174#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/spark/spark-core_2.11/2.1.0/spark-core_2.11-2.1.0-sources.jar!/org/apache/spark/api/java/JavaRDDLike.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="131">
+          <caret line="525" column="6" lean-forward="false" selection-start-line="525" selection-start-column="6" selection-end-line="525" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cores/MovieUsersAnalyzer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="21" column="99" lean-forward="false" selection-start-line="21" selection-start-column="99" selection-end-line="21" selection-end-column="99" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1129#1643#0" expanded="true" />
+            <element signature="e#1642#1643#0" expanded="true" />
+            <element signature="e#1778#2071#0" expanded="true" />
+            <element signature="e#2070#2071#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/moviedata/dataforsecondarysorting.dat">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" column="3" lean-forward="false" selection-start-line="3" selection-start-column="3" selection-end-line="3" selection-end-column="3" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cores/SecondarySorting.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="211">
+          <caret line="25" column="11" lean-forward="true" selection-start-line="25" selection-start-column="11" selection-end-line="25" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/scala/spark/movieAnalysis/MovieSecondarySorting.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" column="30" lean-forward="true" selection-start-line="5" selection-start-column="30" selection-end-line="5" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/scala/spark/core/MovieUserAnalysisRDD.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="24" column="7" lean-forward="false" selection-start-line="24" selection-start-column="7" selection-end-line="24" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/scala/spark/core/MovieAnalysisRDDOps.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="11" column="7" lean-forward="false" selection-start-line="11" selection-start-column="7" selection-end-line="11" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/scala/spark/sql/MovieAnalysisSparkSQLOps.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" column="7" lean-forward="false" selection-start-line="10" selection-start-column="7" selection-end-line="10" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/scala/spark/sql/HiveCreateTable.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" column="7" lean-forward="false" selection-start-line="5" selection-start-column="7" selection-end-line="5" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/scala/spark/sql/TestHiveConnection.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" column="7" lean-forward="false" selection-start-line="7" selection-start-column="7" selection-end-line="7" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/scala/spark/sql/MovieUserAnalysisDataFrame.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="320">
+          <caret line="32" column="0" lean-forward="true" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1451,7 +1602,7 @@
       </state>
       <state key="GlobalLibrariesConfigurable.UI">
         <settings>
-          <last-edited>Python 3.5.2 (/Library/Frameworks/Python.framework/Versions/3.5/bin/python3) interpreter library</last-edited>
+          <last-edited>Python 3.5.2 (/usr/local/Frameworks/Python.framework/Versions/3.5/bin/python3) interpreter library</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
@@ -1463,7 +1614,7 @@
       </state>
       <state key="JdkListConfigurable.UI">
         <settings>
-          <last-edited>Python 3.5.2 (/Library/Frameworks/Python.framework/Versions/3.5/bin/python3)</last-edited>
+          <last-edited>1.8</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
@@ -1480,7 +1631,6 @@
             <option name="proportions">
               <list>
                 <option value="0.2" />
-                <option value="0.6" />
               </list>
             </option>
           </splitter-proportions>
