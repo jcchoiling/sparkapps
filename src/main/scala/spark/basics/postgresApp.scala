@@ -26,7 +26,7 @@ object postgresApp {
       .option("url", "jdbc:postgresql://localhost:5432/ott")
       .option("dbtable", "person")
       .option("user", "postgres")
-      .option("password", "postgres")
+      .option("password", "aa123456")
       .load()
 
     jdbcDF.show()
