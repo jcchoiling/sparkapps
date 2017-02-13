@@ -20,13 +20,18 @@ sys.path.append("/usr/local/opt/spark210/python")
 sys.path.append("/usr/local/opt/spark210/python/lib/py4j-0.10.4-src.zip")
 
 
-APP_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
-RESOURCES = os.path.join(APP_DIR+'/resources')
+APP_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))))
+
+SRC = os.path.join(APP_DIR+'/src')
+MAIN = os.path.join(SRC+'/main')
+SPARK_WAREHOUSE = os.path.join(MAIN+'/python/spark-warehouse')
+RESOURCES = os.path.join(MAIN+'/resources')
 GENERAL_DATA = os.path.join(RESOURCES+'/general')
 BBALL_STAT = os.path.join(RESOURCES+'/bballStat')
 MOVIE_DATA = os.path.join(RESOURCES+'/moviedata')
 SALES_DATA = os.path.join(RESOURCES+'/sales')
 HIVE_FILES = os.path.join(RESOURCES+'/hivefiles')
+
 
 sys.path.insert(0,APP_DIR)
 sys.path.insert(1,RESOURCES)
@@ -35,3 +40,4 @@ sys.path.insert(3,BBALL_STAT)
 sys.path.insert(4,MOVIE_DATA)
 sys.path.insert(5,SALES_DATA)
 sys.path.insert(6,HIVE_FILES)
+sys.path.insert(7,SPARK_WAREHOUSE)

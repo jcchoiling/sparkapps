@@ -7,6 +7,7 @@ from __future__ import print_function
 
 import setting
 import sys
+from os.path import expanduser, join, abspath
 from operator import add
 from pyspark.sql import SparkSession
 
@@ -16,13 +17,24 @@ from pyspark.sql import SparkSession
 
 if __name__ == "__main__":
 
+    warehouse_location = setting.SPARK_WAREHOUSE
+
     file = setting.GENERAL_DATA + "/spark.txt"
 
     # if len(sys.argv) !=2 0:
         # print("Usage: wordcount <file>", file=sys.stderr)
         # exit(-1)
 
-    spark = SparkSession.builder.appName("PythonWordCount").getOrCreate()
+    spark = SparkSession.builder\
+        .appName("PythonWordCount")\
+        .config("spark.sql.warehouse",warehouse_location)\
+        .getOrCreate()
+
+    sc = spark.sparkContext
+
+    sc.setLogLevel("WARN")
+
+    print(warehouse_location)
 
     lines = spark.read.text(file).rdd.map(lambda r: r[0])
     counts = lines.flatMap(lambda x: x.split(' ')).map(lambda x: (x, 1)).reduceByKey(add)
