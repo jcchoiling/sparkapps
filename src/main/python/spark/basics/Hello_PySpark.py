@@ -4,13 +4,10 @@
 # Spark Application for Python
 
 from __future__ import print_function
-
-import setting
-import sys
-from os.path import expanduser, join, abspath
+from spark import setting
 from operator import add
-from pyspark.sql import SparkSession
 
+from pyspark.sql import SparkSession
 
 # Define a function
 
@@ -33,8 +30,6 @@ if __name__ == "__main__":
     sc = spark.sparkContext
 
     sc.setLogLevel("WARN")
-
-    print(warehouse_location)
 
     lines = spark.read.text(file).rdd.map(lambda r: r[0])
     counts = lines.flatMap(lambda x: x.split(' ')).map(lambda x: (x, 1)).reduceByKey(add)

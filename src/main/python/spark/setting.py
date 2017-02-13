@@ -20,8 +20,7 @@ sys.path.append("/usr/local/opt/spark210/python")
 sys.path.append("/usr/local/opt/spark210/python/lib/py4j-0.10.4-src.zip")
 
 
-APP_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))))
-
+APP_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))))
 SRC = os.path.join(APP_DIR+'/src')
 MAIN = os.path.join(SRC+'/main')
 SPARK_WAREHOUSE = os.path.join(MAIN+'/python/spark-warehouse')
