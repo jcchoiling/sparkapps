@@ -1,9 +1,0 @@
-0^Hadoop^America^5000|8000|12000|level8^male
-1^Spark^America^8000|10000|15000|level8^female
-2^Flink^America^7000|8000|13000|level8^male
-3^Hadoop^America^9000|11000|12000|level8^female
-4^Spark^America^10000|11000|12000|level8^male
-5^Flink^America^11000|12000|18000|level8^female
-6^Hadoop^America^15000|16000|19000|level8^male
-7^Spark^America^18000|19000|20000|level8^male
-8^Flink^America^28000|29000|32000|level8^male

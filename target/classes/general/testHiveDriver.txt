@@ -1,3 +1,0 @@
-1,Spark
-2,Scala
-3,Hive

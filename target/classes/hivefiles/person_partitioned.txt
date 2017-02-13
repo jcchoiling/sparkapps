@@ -1,3 +1,0 @@
-0   Spark   America
-1   Hadopp  America
-3   Scala   America

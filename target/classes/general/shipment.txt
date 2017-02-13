@@ -1,3 +1,0 @@
-time^B1298598398404^Atype^Brequest^Astate^Bny^Acity^Bwhite plains^Apart\^Bmuffler
-time^B1298598398432^Atype^Bresponse^Astate^Bny^Acity^Btarry- town^Apart\^Bmuffler
-time^B1298598399404^Atype^Brequest^Astate^Btx^Acity^Baus- tin^Apart^Bheadlight
