@@ -37,7 +37,7 @@ object EB_MovieUserAnalysisDataSet {
     Logger.getLogger("org").setLevel(Level.WARN)
 
     var masterUrl = "local[1]"  //默认程序运行在本地Local模式中，主要是学习和测试
-    var dataPath = "src/main/resources/moviedata/" //数据存放的目录
+    var dataPath = "src/main/resources/general/" //数据存放的目录
 
     if (args.length > 0) {
       masterUrl = args(0)
@@ -56,6 +56,21 @@ object EB_MovieUserAnalysisDataSet {
 
     import org.apache.spark.sql.functions._
     import spark.implicits._
+
+    val usersInfo = spark.read.json(dataPath + "/users.json")
+    val usersAccessLog = spark.read.json(dataPath + "/logs.json")
+
+    usersInfo.printSchema()
+    usersAccessLog.printSchema()
+
+
+//    usersAccessLog.filter("time >= 2017.01.01 and time <= 2017.01.10")
+//      .join(usersInfo, usersAccessLog("UserID") === usersInfo("UserID"))
+//      .groupBy(usersInfo("UserID"), usersInfo("UserName"))
+//      .agg(count(usersAccessLog("time")).alias("userCount"))
+//      .sort($"userCount".desc)
+//      .limit(10)
+//      .show()
 
 
 
