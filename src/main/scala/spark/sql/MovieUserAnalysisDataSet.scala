@@ -1,10 +1,9 @@
 package spark.sql
 
-
 import org.apache.log4j.{Level, Logger}
-import org.apache.spark.sql.{Row, SparkSession}
-import org.apache.spark.sql.types.{DoubleType, StringType, StructField, StructType}
 import org.apache.spark.SparkConf
+import org.apache.spark.sql.types.{DoubleType, StringType, StructField, StructType}
+import org.apache.spark.sql.{Row, SparkSession}
 
 import scala.collection.mutable
 
@@ -27,7 +26,7 @@ import scala.collection.mutable
   *  4, "occupations.dat"：OccupationID::OccupationName   一般情况下都会以程序中数据结构Haskset的方式存在，是为了做mapjoin
   */
 
-object MovieUserAnalysisDataFrame {
+object MovieUserAnalysisDataSet {
   def main(args: Array[String]) {
 
     Logger.getLogger("org").setLevel(Level.WARN)
@@ -41,7 +40,7 @@ object MovieUserAnalysisDataFrame {
       dataPath = args(1)
     }
 
-    val sparkConf = new SparkConf().setMaster(masterUrl).setAppName("MovieUserAnalysisDataFrame")
+    val sparkConf = new SparkConf().setMaster(masterUrl).setAppName("MovieUserAnalysisDataSet")
 
     val spark = SparkSession
       .builder()

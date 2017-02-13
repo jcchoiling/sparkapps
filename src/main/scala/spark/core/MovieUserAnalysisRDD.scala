@@ -208,7 +208,7 @@ object MovieUserAnalysisRDD {
     val targetTaobaoUsersBroadcast = sc.broadcast(targetTaobaoUsersSet)
 
     //"movies.dat"：MovieID::Title::Genres
-    val movieID2Name = moviesRDD.map(_.split("::")).map(x => (x(0),x(1))).collect().toMap //把宅变成 Map 的方式
+    val movieID2Name = moviesRDD.map(_.split("::")).map(x => (x(0),x(1))).collect().toMap //把它变成 Map 的方式
 
     ratingsRDD.map(_.split("::")).map(x => (x(0),x(1))).filter(
       x => targetQQUsersBroadcast.value.contains(x._1) // userId,MovieId: (18,2987)
@@ -229,6 +229,7 @@ object MovieUserAnalysisRDD {
     (Star Wars: Episode IV - A New Hope (1977),562)
       */
 
+    println("纯粹通过RDD的方式实现所有电影中淘宝核心目标用户最喜爱电影TopN分析:")
     ratingsRDD.map(_.split("::")).map(x => (x(0),x(1))).filter(
       x => targetTaobaoUsersBroadcast.value.contains(x._1) // userId,MovieId: (18,2987)
     )

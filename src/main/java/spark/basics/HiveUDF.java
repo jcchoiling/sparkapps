@@ -1,4 +1,4 @@
-package basics;
+package spark.basics;
 
 import org.apache.hadoop.hive.ql.exec.Description;
 import org.apache.hadoop.hive.ql.exec.UDF;

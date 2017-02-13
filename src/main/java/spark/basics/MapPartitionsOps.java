@@ -1,4 +1,4 @@
-package basics;
+package spark.basics;
 
 import org.apache.spark.SparkConf;
 import org.apache.spark.api.java.JavaRDD;
