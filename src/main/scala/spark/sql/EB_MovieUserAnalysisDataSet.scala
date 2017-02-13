@@ -57,14 +57,20 @@ object EB_MovieUserAnalysisDataSet {
     import org.apache.spark.sql.functions._
     import spark.implicits._
 
-    val usersInfo = spark.read.json(dataPath + "/users.json")
-    val usersAccessLog = spark.read.json(dataPath + "/logs.json")
+    val usersInfo = spark.read.parquet(dataPath + "/users_eb.parquet")
+    val usersAccessLog = spark.read.parquet(dataPath + "/log_eb.parquet")
 
-    usersInfo.printSchema()
-    usersAccessLog.printSchema()
+    usersInfo.select(count($"UserID")).show() //SELECT count(*) FROM usersInfo
+    usersAccessLog.select(count($"UserID")).show() //SELECT count(*) FROM usersAccessLog
+
+//    usersInfo.select("name", "registeredTime", "userID").write.save("users_eb.parquet")
+//    usersAccessLog.select("consumed", "logID", "time", "typed","userID").write.save("log_eb.parquet")
 
 
-//    usersAccessLog.filter("time >= 2017.01.01 and time <= 2017.01.10")
+    /**
+      * filter 之后进行 join, 然后进行 groupBy，groupBy 之后进行 agg，最后 sort
+      */
+//    usersAccessLog.filter("time >= 2016-10-01 and time <= 2016-10-10")
 //      .join(usersInfo, usersAccessLog("UserID") === usersInfo("UserID"))
 //      .groupBy(usersInfo("UserID"), usersInfo("UserName"))
 //      .agg(count(usersAccessLog("time")).alias("userCount"))
