@@ -57,26 +57,20 @@ import scala.collection.mutable
   */
 
 object NBAPlayerAnalysisDataSet {
-  def main(args: Array[String]) {
 
-    /////////////////////////////////////////////////////////
+  def main(args: Array[String]) {
 
     Logger.getLogger("org").setLevel(Level.WARN)
 
     var masterUrl = "local"
-    var dataPath = "src/main/resources/bballStat/" //数据存放的目录
+    var dataPath = "src/main/resources/nbaBasketball/" // 数据存放的目录
     val conf = new SparkConf().setMaster(masterUrl).setAppName("NBAPlayerAnalysisDataSet")
 
-    if (args.length > 0) {
-      masterUrl = args(0)
-    } else if (args.length > 1) {
-      dataPath = args(1)
-    }
+    if (args.length > 0) masterUrl = args(0) //
 
     val spark = SparkSession.builder().config(conf).getOrCreate()
     val sc = spark.sparkContext
 
-    /////////////////////////////////////////////////////////
 
     for (year <- 1970 to 2016){
 
