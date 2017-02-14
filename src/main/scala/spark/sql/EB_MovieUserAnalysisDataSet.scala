@@ -28,10 +28,10 @@ import org.apache.spark.sql.{Row, SparkSession}
 object EB_MovieUserAnalysisDataSet {
 
 
-  case class UserLog(logID: Long, userID: Long, time: String, typed: Long,  consumed: Double)
+  case class UserLog(logID: Long, UserID: Long, time: String, typed: Long,  consumed: Double)
 
-  case class LogOnce(logID: Long, userID: Long, count: Long)
-  case class ConsumeOnce(logID: Long, userID: Long, consumed: Double)
+  case class LogOnce(logID: Long, UserID: Long, count: Long)
+  case class ConsumeOnce(logID: Long, UserID: Long, consumed: Double)
 
 
   def main(args: Array[String]) {
@@ -59,63 +59,76 @@ object EB_MovieUserAnalysisDataSet {
     import org.apache.spark.sql.functions._
     import spark.implicits._
 
-    //Read the json file
-    val usersInfo = spark.read.json(dataPath + "/users.json")
-    val usersAccessLog = spark.read.json(dataPath + "/logs.json")
+    /**
+      * Read data from the source Json format and save it in the Parquet format
+      * users.json: {"userID": 0, "name": "spark0", "registeredTime": "2016-10-11 18:06:25"}
+      * logs.json: {"logID": 9966,"userID": 99, "time": "2016-10-17 15:42:46", "typed": 0, "consumed": 0.0}
+      */
 
-    //Convert the json to parquet file
-//    usersInfo.select(count($"UserID")).show() //SELECT count(*) FROM usersInfo
-//    usersAccessLog.select(count($"UserID")).show() //SELECT count(*) FROM usersAccessLog
+//    val usersInfoJsonDF = spark.read.json(dataPath + "/users.json")
+//    usersInfoJsonDF.createOrReplaceTempView("users")
+//    val usersInfoSqlDF = spark.sql(
+//      "SELECT userID as UserID, name as UserName, registeredTime as RegisteredTime from users")
+//    usersInfoSqlDF.select("UserID", "UserName", "RegisteredTime").write.parquet(dataPath+"/userparquet.parquet")
+//
+//    val usersAccessLogJsonDF = spark.read.json(dataPath + "/logs.json")
+//    usersAccessLogJsonDF.createOrReplaceTempView("logs")
+//    val usersAccessLogSQLDF = spark.sql(
+//      "SELECT logID, userID as userID, time, typed, consumed from logs")
+//    usersAccessLogSQLDF.select("logID", "userID" , "time", "typed", "consumed").write.parquet(dataPath+"/logparquet.parquet")
 
 
-    usersInfo.select("userID", "name", "registeredTime").write.parquet(dataPath+"/userparquet.parquet")
-    usersAccessLog.select("logID", "userID", "time", "typed", "consumed").write.parquet(dataPath+"/logparquet.parquet")
+    /**
+      * Usually read the parquet source file in Production
+      */
+    val usersInfo = spark.read.parquet(dataPath + "/userparquet.parquet")
+    val usersAccessLog = spark.read.parquet(dataPath + "/logparquet.parquet")
 
-
-    usersAccessLog.select("time").show()
 
     /**
       * filter 之后进行 join, 然后进行 groupBy，groupBy 之后进行 agg，最后 sort
       */
-//    usersAccessLog.filter("time >= 2016-10-01 and time <= 2016-10-10")
-//      .join(usersInfo, usersAccessLog("UserID") === usersInfo("UserID")) //
-//      .groupBy(usersInfo("UserID"), usersInfo("UserName"))
-//      .agg(count(usersAccessLog("time")).alias("userCount"))
-//      .sort($"userCount".desc)
-//      .limit(10)
-//      .show()
-//
-//
-//    usersAccessLog.filter("time >= 2016-10-01 and time <= 2016-10-10")
-//      .join(usersInfo, usersAccessLog("UserID") === usersInfo("UserID"))
-//      .groupBy(usersInfo("UserID"), usersInfo("UserName"))
-//      .agg(count(usersAccessLog("consumed")).alias("totalCount"))
-//      .sort($"totalCount".desc)
-//      .limit(10)
-//      .show()
-//
-//
-//    usersAccessLog.filter("time >= 2016-10-01 and time <= 2016-10-10")
-//      .join(usersInfo, usersAccessLog("UserID") === usersInfo("UserID"))
-//      .groupBy(usersInfo("UserID"), usersInfo("UserName"))
-//      .agg(count(usersAccessLog("consumed")).alias("totalCount"))
-//      .sort($"totalCount".desc)
-//      .limit(10)
-//      .show()
-//
-//
-//    val userAccessTemp = usersAccessLog.as[UserLog].filter("time >= 2016-10-11 and time <= 2016-10-20")
-//      .map(log => LogOnce(log.logID, log.userID, 1))
-//      .union(
-//        usersAccessLog.as[UserLog].filter("time >= 2016-10-11 and time <= 2016-10-20")
-//          .map(log => LogOnce(log.logID, log.userID, -1))
-//      )
-//    userAccessTemp.join(usersInfo, usersAccessLog("UserID") === usersInfo("UserID"))
-//      .groupBy(usersInfo("UserID"), usersInfo("UserID"))
-//      .agg(sum(userAccessTemp("count")).alias("viewIncreaseTmp"))
-//      .sort($"viewIncreaseTmp".desc)
-//      .limit(10)
-//      .show()
+
+    println("Questions 1:")
+    usersAccessLog.filter("time >= 2016-10-01 and time <= 2016-10-10")
+      .join(usersInfo, usersAccessLog("UserID") === usersInfo("UserID")) //
+      .groupBy(usersInfo("UserID"), usersInfo("UserName"))
+      .agg(count(usersAccessLog("time")).alias("userCount"))
+      .sort($"userCount".desc)
+      .limit(10)
+      .show()
+
+    println("Questions 2:")
+    usersAccessLog.filter("time >= 2016-10-01 and time <= 2016-10-10")
+      .join(usersInfo, usersAccessLog("UserID") === usersInfo("UserID"))
+      .groupBy(usersInfo("UserID"), usersInfo("UserName"))
+      .agg(count(usersAccessLog("consumed")).alias("totalCount"))
+      .sort($"totalCount".desc)
+      .limit(10)
+      .show()
+
+    println("Questions 3:")
+    usersAccessLog.filter("time >= 2016-10-01 and time <= 2016-10-10")
+      .join(usersInfo, usersAccessLog("UserID") === usersInfo("UserID"))
+      .groupBy(usersInfo("UserID"), usersInfo("UserName"))
+      .agg(count(usersAccessLog("consumed")).alias("totalCount"))
+      .sort($"totalCount".desc)
+      .limit(10)
+      .show()
+
+    println("Questions 4:")
+    val userAccessTemp = usersAccessLog.as[UserLog].filter("time >= 2016-10-11 and time <= 2016-10-20")
+      .map(log => LogOnce(log.logID, log.UserID, 1))
+      .union(
+        usersAccessLog.as[UserLog].filter("time >= 2016-10-11 and time <= 2016-10-20")
+          .map(log => LogOnce(log.logID, log.UserID, -1))
+      )
+    userAccessTemp.join(usersInfo, usersAccessLog("UserID") === usersInfo("UserID"))
+      .groupBy(usersInfo("UserID"), usersInfo("UserID"))
+      .agg(sum(userAccessTemp("count")).alias("viewIncreaseTmp"))
+      .sort($"viewIncreaseTmp".desc)
+      .limit(10)
+      .show()
 
     spark.stop()
 

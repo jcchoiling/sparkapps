@@ -4,7 +4,7 @@
 # Spark Application for Python
 
 from __future__ import print_function
-from spark import setting
+from spark import viu_setting as setting
 from operator import add
 
 from pyspark.sql import SparkSession
