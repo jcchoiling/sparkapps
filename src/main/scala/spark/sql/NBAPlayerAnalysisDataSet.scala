@@ -1,11 +1,12 @@
 package spark.sql
 
+import org.apache.hadoop.conf.Configuration
+import org.apache.hadoop.fs.{FileSystem, Path}
 import org.apache.log4j.{Level, Logger}
-import org.apache.spark.SparkConf
-import org.apache.spark.sql.types.{DoubleType, StringType, StructField, StructType}
-import org.apache.spark.sql.{Row, SparkSession}
-
-import scala.collection.mutable
+import org.apache.spark.{SparkConf, SparkContext}
+import org.apache.spark.rdd.RDD
+import org.apache.spark.sql.SparkSession
+import org.apache.spark.storage.StorageLevel
 
 
 /**
@@ -58,12 +59,13 @@ import scala.collection.mutable
 
 object NBAPlayerAnalysisDataSet {
 
+
   def main(args: Array[String]) {
 
     Logger.getLogger("org").setLevel(Level.WARN)
 
     var masterUrl = "local"
-    var dataPath = "src/main/resources/nbaBasketball/" // 数据存放的目录
+
     val conf = new SparkConf().setMaster(masterUrl).setAppName("NBAPlayerAnalysisDataSet")
 
     if (args.length > 0) masterUrl = args(0) //
@@ -71,15 +73,73 @@ object NBAPlayerAnalysisDataSet {
     val spark = SparkSession.builder().config(conf).getOrCreate()
     val sc = spark.sparkContext
 
+    var dataPath = "src/main/resources/nbaBasketball/" // 数据存放的目录
+    val dataTmp = "src/main/resources/tmp/"
 
-    for (year <- 1970 to 2016){
+//    FileSystem.get(new Configuration()).delete(new Path(dataTmp), true)
 
-      val statsPerYear = sc.textFile(s"${dataPath}/leagues_NBA_${year}*")
-      statsPerYear.filter(_.contains(",")).map(line => (year, line)).saveAsTextFile(dataPath)
+//    for (year <- 1970 to 2016){
+//
+//      val statsPerYear = sc.textFile(s"${dataPath}/leagues_NBA_${year}*")
+//      statsPerYear.filter(_.contains(",")).map(line => (year, line)).saveAsTextFile(s"${dataTmp}/nbaStatsPerYear/${year}")
+//
+//    }
+
+    val NBAStats = sc.textFile(s"${dataTmp}/nbaStatsPerYear/*/*")
+    val filteredData = NBAStats.filter(line => !line.contains("FG%")).filter(line => line.contains(",")) // draft ETL
+      .map(line => line.replace(",,",",0,"))
+
+    filteredData.persist(StorageLevel.MEMORY_AND_DISK) //因为这样可以更好的使用内存且不让数据丢失
+
+    val itemStats = "FG,FGA,FG%,3P,3PA,3P%,2P,2PA,2P%,eFG%,FT,FTA,FT%,ORB,DRB,TRB,AST,STL,BLK,TOV,PF,PTS".split(",")
+    itemStats.foreach(println)
+
+
+    def computeNormalize(value: Double, max: Double, min: Double) = {
+      value / math.max(math.abs(max), math.abs(min))
+    }
+
+    case class NBAPlayerData(year: Int, name: String, position: String, age: Int, team: String, gp: Int, gs: Int, mp: Double, stats: Array[Double], statsZ: Array[Double] = Array[Double](), valueZ: Double = 0, statsN: Array[Double] = Array[Double](), valueN: Double = 0, experience: Double = 0)
+
+
+    def rawData2NBAPlayerData(line: String, bStats: Map[String, Double] = Map.empty,
+                              zStats: Map[String, Double] = Map.empty) = {
+
+      val content = line.replace(",,",",0,")
+      val value = content.substring(1, content.length - 1).split(",")
+
+      val year = value(0).toInt
+      val name = value(2)
+      val position = value(3)
+      val age = value(4).toInt
+      val team = value(5)
+      val gp = value(6).toInt
+      val gs = value(7).toInt
+      val mp = value(8).toDouble
+      val stats:  Array[Double]= value .slice(9,31).map(score => score.toDouble)
+      val statsZ: Array[Double] = Array.empty
+      val valueZ: Double = Double.NaN
+      val statsN: Array[Double] = Array.empty
+      val valueN: Double = Double.NaN
+      val experience: Double = Double.NaN
+
+      if (bStats.isEmpty)
+
+      NBAPlayerData(year, name, position, age, team, gp, gs, mp, stats, statsZ, valueZ, statsN, valueN, experience)
 
     }
+
+    val basicData = computeStats(filteredData, itemStats).collect()
+
+    val basicDataBroadcast = sc.broadcast(basicData)
 
     spark.stop()
 
   }
+
+  def computeStats(filteredData: RDD[String], itemStats: Array[String]): RDD[String]  = {
+
+    filteredData
+  }
+
 }
