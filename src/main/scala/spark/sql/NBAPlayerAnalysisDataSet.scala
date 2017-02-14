@@ -10,29 +10,62 @@ import scala.collection.mutable
 
 /**
   * 版权：DT大数据梦工厂所有
-  * 时间：2017年1月1日；
-  * 电影点评系统用户行为分析：用户观看电影和点评电影的所有行为数据的采集、过滤、处理和展示：
-  *   数据采集：企业中一般越来越多的喜欢直接把Server中的数据发送给Kafka，因为更加具备实时性；
-  *   数据过滤：趋势是直接在Server端进行数据过滤和格式化，当然采用Spark SQL进行数据的过滤也是一种主要形式；
-  *   数据处理：
-  *     1，一个基本的技巧是，先使用传统的SQL去实现一个下数据处理的业务逻辑（自己可以手动模拟一些数据）；
-  *     2，再一次推荐使用DataSet去实现业务功能尤其是统计分析功能；
-  *     3，如果你想成为专家级别的顶级Spark人才，请使用RDD实现业务功能，为什么？运行的时候是基于RDD的！
+  * 时间：2017年1月26日；
+  * NBA篮球运动员大数据分析决策支持系统：
+  *   基于NBA球员历史数据1970~2017年各种表现，全方位分析球员的技能，构建最强NBA篮球团队做数据分析支撑系统
+  * 曾经非常火爆的梦幻篮球是基于现实中的篮球比赛数据根据对手的情况制定游戏的先发阵容和比赛结果（也就是说比赛结果是由实际结果来决定），
+  * 游戏中可以管理球员，例如说调整比赛的阵容，其中也包括裁员、签入和交易等
   *
-  *  数据：强烈建议大家使用Parquet
-  *  1，"ratings.dat"：UserID::MovieID::Rating::Timestamp
-  *  2，"users.dat"：UserID::Gender::Age::OccupationID::Zip-code
-  *  3，"movies.dat"：MovieID::Title::Genres
-  *  4, "occupations.dat"：OccupationID::OccupationName   一般情况下都会以程序中数据结构Haskset的方式存在，是为了做mapjoin
+  * 而这里的大数据分析系统可以被认为是游戏背后的数据分析系统。
+  * 具体的数据关键的数据项如下所示：
+  *   3P：3分命中；
+  *   3PA：3分出手；
+  *   3P%：3分命中率；
+  *   2P：2分命中；
+  *   2PA：2分出手；
+  *   2P%：2分命中率；
+  *   TRB：篮板球；
+  *   STL：抢断；
+  *   AST：助攻；
+  *   BLT: 盖帽；
+  *   FT: 罚球命中；
+  *   TOV: 失误；
+  *
+  *
+  *   基于球员的历史数据，如何对球员进行评价？也就是如何进行科学的指标计算，一个比较流行的算法是Z-score：其基本的计算过程是
+  *     基于球员的得分减去平均值后来除以标准差，举个简单的例子，某个球员在2016年的平均篮板数是7.1，而所有球员在2016年的平均篮板数是4.5
+  *     而标准差是1.3，那么该球员Z-score得分为：2
+  *
+  *   在计算球员的表现指标中可以计算FT%、BLK、AST、FG%等；
+  *
+  *
+  *   具体如何通过Spark技术来实现呢？
+  *   第一步：数据预处理：例如去掉不必要的标题等信息；
+  *   第二步：数据的缓存：为加速后面的数据处理打下基础；
+  *   第三步：基础数据项计算：方差、均值、最大值、最小值、出现次数等等；
+  *   第四步：计算Z-score，一般会进行广播，可以提升效率；
+  *   第五步：基于前面四步的基础可以借助Spark SQL进行多维度NBA篮球运动员数据分析，可以使用SQL语句，也可以使用DataSet（我们在这里可能会
+  *     优先选择使用SQL，为什么呢？其实原因非常简单，复杂的算法级别的计算已经在前面四步完成了且广播给了集群，我们在SQL中可以直接使用）
+  *   第六步：把数据放在Redis或者DB中；
+  *
+  *
+  *   Tips：
+  *     1，这里的一个非常重要的实现技巧是通过RDD计算出来一些核心基础数据并广播出去，后面的业务基于SQL去实现，既简单又可以灵活的应对业务变化需求，希望
+  *       大家能够有所启发；
+  *     2，使用缓存和广播以及调整并行度等来提升效率；
+  *
   */
 
 object NBAPlayerAnalysisDataSet {
   def main(args: Array[String]) {
 
+    /////////////////////////////////////////////////////////
+
     Logger.getLogger("org").setLevel(Level.WARN)
 
-    var masterUrl = "local[1]"  //默认程序运行在本地Local模式中，主要是学习和测试
-    var dataPath = "src/main/resources/moviedata/" //数据存放的目录
+    var masterUrl = "local"
+    var dataPath = "src/main/resources/bballStat/" //数据存放的目录
+    val conf = new SparkConf().setMaster(masterUrl).setAppName("NBAPlayerAnalysisDataSet")
 
     if (args.length > 0) {
       masterUrl = args(0)
@@ -40,214 +73,19 @@ object NBAPlayerAnalysisDataSet {
       dataPath = args(1)
     }
 
-    val sparkConf = new SparkConf().setMaster(masterUrl).setAppName("MovieUserAnalysisDataFrame")
-
-    val spark = SparkSession
-      .builder()
-      .config(sparkConf)
-      .getOrCreate()
-
+    val spark = SparkSession.builder().config(conf).getOrCreate()
     val sc = spark.sparkContext
 
-    /**
-      * Extract the data from the source file
-      */
-    val usersRDD = sc.textFile(dataPath + "users.dat")
-    val moviesRDD = sc.textFile(dataPath + "movies.dat")
-    val occupationsRDD = sc.textFile(dataPath + "occupations.dat")
-    val ratingsRDD = sc.textFile(dataPath + "ratings.dat")
+    /////////////////////////////////////////////////////////
 
+    for (year <- 1970 to 2016){
 
-    /**
-      * Define the user schema structure: UserID::Gender::Age::OccupationID::Zip-code
-      */
-    val userSchema = StructType("UserID::Gender::Age::OccupationID::Zip-code".split("::")
-      .map(col => StructField(col, StringType, true)))
-    val usersRDDRows = usersRDD.map(_.split("::"))
-      .map(attr => Row(attr(0).trim,attr(1).trim,attr(2).trim,attr(3).trim,attr(4).trim))
-    val usersDF = spark.createDataFrame(usersRDDRows, userSchema)
+      val statsPerYear = sc.textFile(s"${dataPath}/leagues_NBA_${year}*")
+      statsPerYear.filter(_.contains(",")).map(line => (year, line)).saveAsTextFile(dataPath)
 
-
-
-    /**
-      * Define the movie schema structure: MovieID::Title::Genres
-      */
-    val moviesSchema = StructType("MovieID::Title::Genres".split("::")
-      .map(col => StructField(col, StringType, true)))
-    val moviesRDDRows = moviesRDD.map(_.split("::"))
-      .map(attr => Row(attr(0).trim,attr(1).trim,attr(2).trim))
-    val moviesDF = spark.createDataFrame(moviesRDDRows, moviesSchema)
-
-
-    /**
-      * Define the rating schema structure: UserID::MovieID::Rating::Timestamp
-      */
-    val ratingSchema = StructType("UserID::MovieID".split("::")
-      .map(col => StructField(col, StringType, true)))
-      .add("Rating", DoubleType, true)
-      .add("Timestamp", StringType, true)
-
-//    val ratingSchema = StructType(
-//      "UserID::MovieID::Rating::Timestamp".split("::").map{
-//        case "UserID" => StructField("UserID", StringType, true)
-//        case "MovieID" => StructField("MovieID", StringType, true)
-//        case "Rating" => StructField("Rating", DoubleType, true)
-//        case "Timestamp" => StructField("Timestamp", StringType, true)
-//    })
-
-    val ratingsRDDRows = ratingsRDD.map(_.split("::"))
-      .map(attr => Row(attr(0).trim,attr(1).trim,attr(2).trim.toDouble,attr(3).trim))
-    val ratingsDF = spark.createDataFrame(ratingsRDDRows, ratingSchema)
-
-//    println("功能一：通过DataFrame实现某特定电影观看者中男性和女性不同年龄分别有多少人: ")
-//    ratingsDF.filter(s" MovieID = 1193")
-//      .join(usersDF, "UserID")
-//      .select("Gender","Age")
-//      .groupBy("Gender","Age")
-//      .count()
-//      .show(10)
-//
-//    println("功能二：用GlobalTempView的SQL语句实现某特定电影观看者中男性和女性不同年龄分别有多少人？")
-//    ratingsDF.createGlobalTempView("ratings_global")
-//    usersDF.createGlobalTempView("users_global")
-//
-//    spark.sql(
-//      "SELECT u.Gender, u.Age, count(*) " +
-//      "FROM global_temp.ratings_global r " +
-//      "JOIN global_temp.users_global u " +
-//      "ON r.UserID = u.UserID " +
-//      "WHERE r.MovieID = 1193 " +
-//      "GROUP BY u.Gender, u.Age"
-//    ).show(10)
-
-//    ratingsDF.createOrReplaceTempView("ratings")
-//    usersDF.createOrReplaceTempView("users")
-
-//    spark.sql(
-//      "SELECT u.Gender, u.Age, count(*) " +
-//        "FROM ratings r " +
-//        "JOIN users u " +
-//        "ON r.UserID = u.UserID " +
-//        "WHERE r.MovieID = 1193 " +
-//        "GROUP BY u.Gender, u.Age"
-//    ).show(10)
-
-
-//    ratingsDF.select("MovieID","Rating").groupBy("MovieID").avg("Rating").rdd // 这里有二列元素
-//    .map(row => (row(1),(row(0),row(1))))
-//      .sortBy(_._1.toString.toDouble, false)
-//      .map(tuple => tuple._2)
-//      .take(10)
-//      .foreach(println)
-
-
-    import spark.implicits._ // Need to import the implicits, this is to transform the data to DatSets
-//    ratingsDF.select("MovieID","Rating").groupBy("MovieID").avg("Rating").orderBy($"avg(Rating)".desc).show(10)
-
-    val ratings = ratingsRDD.map(_.split("::")).map(x => (x(0),x(1),x(2))).cache() //UserID::MovieID::Rating
-
-//    println("通过RDD對所有电影中粉丝或者观看人数最多的电影:")
-//    ratings.map(x => (x._2, 1)).reduceByKey(_+_)
-//      .map(x => (x._2, x._1))
-//      .sortByKey(false)
-//      .map(x => (x._2, x._1))
-//      .take(10)
-//      .foreach(println)
-//
-//    println("通过DataFrame和RDD结合對所有电影中粉丝或者观看人数最多的电影:")
-//    ratingsDF.select("MovieID").groupBy("MovieID")
-//      .count().rdd
-//      .map(row => (row(1),(row(0),row(1))))
-//      .sortBy(_._1.toString.toLong, false)
-//      .map(tuple => tuple._2)
-//      .collect()
-//      .take(10)
-//      .foreach(println)
-//
-//    // SQL logic: SELECT movie_id, count(1) FROM ratings GROUP BY movie_id ORDER BY count(1) DESC;
-//    println("通过DataFrame對所有电影中粉丝或者观看人数最多的电影:")
-//    ratingsDF.select("MovieID")
-//      .groupBy("MovieID")
-//      .count()
-//      .orderBy($"count".desc)
-//      .show(10)
-
-//
-//    val genderRatingDF = ratingsDF.join(usersDF, "UserID").cache()
-//    val maleFilteredRatingsDF = genderRatingDF.filter(s"Gender = 'M'")
-//    val femaleFilteredRatingsDF = genderRatingDF.filter(s"Gender = 'F'")
-//
-//    maleFilteredRatingsDF.groupBy("MovieID").avg("Rating").orderBy($"avg(Rating)".desc).show(10)
-//
-//    println("纯粹使用DataFrame实现所有电影中最受女性喜爱的电影Top10:")
-//
-//    femaleFilteredRatingsDF
-//      .groupBy("MovieID")
-//      .avg("Rating")
-//      .orderBy($"avg(Rating)".desc, $"MovieID" )
-//      .show(10)
-
-
-    // MapJoin
-    val targetQQUsers = usersRDD.map(_.split("::")).map(x =>(x(0),x(2))).filter(_._2.equals("18")) //(UserId,Age)
-    val targetTaobaoUsers = usersRDD.map(_.split("::")).map(x => (x(0),x(2))).filter(_._2.equals("25")) //(UserId,Age)
-
-
-    val targetQQUsersSet = mutable.HashSet() ++ targetQQUsers.map(_._1).collect() //[Ljava.lang.String;@5bc28f40
-    val targetTaobaoUsersSet = mutable.HashSet() ++ targetTaobaoUsers.map(_._1).collect()
-
-
-    val targetQQUsersBroadcast = sc.broadcast(targetQQUsersSet)
-    val targetTaobaoUsersBroadcast = sc.broadcast(targetTaobaoUsersSet)
-
-    //"movies.dat"：MovieID::Title::Genres
-    val movieID2Name = moviesRDD.map(_.split("::")).map(x => (x(0),x(1))).collect().toMap //把它变成 Map 的方式
-
-    ratingsRDD.map(_.split("::")).map(x => (x(0),x(1))).filter(
-      x => targetQQUsersBroadcast.value.contains(x._1) // userId,MovieId: (18,2987)
-    )
-      .map(x => (x._2,1))
-      .reduceByKey(_+_)
-      .map(x => (x._2,x._1))
-      .sortByKey(false)
-      .map(x => (x._2,x._1))
-      .take(5)
-      .map(x => (movieID2Name.getOrElse(x._1, null),x._2))
-      .foreach(println)
-    /**
-    (American Beauty (1999),715)
-    (Star Wars: Episode VI - Return of the Jedi (1983),586)
-    (Star Wars: Episode V - The Empire Strikes Back (1980),579)
-    (Matrix, The (1999),567)
-    (Star Wars: Episode IV - A New Hope (1977),562)
-      */
-
-    println("纯粹通过RDD的方式实现所有电影中淘宝核心目标用户最喜爱电影TopN分析:")
-    ratingsRDD.map(_.split("::")).map(x => (x(0),x(1))).filter(
-      x => targetTaobaoUsersBroadcast.value.contains(x._1) // userId,MovieId: (18,2987)
-    )
-      .map(x => (x._2,1))
-      .reduceByKey(_+_)
-      .map(x => (x._2,x._1))
-      .sortByKey(false)
-      .map(x => (x._2,x._1))
-      .take(5)
-      .map(x => (movieID2Name.getOrElse(x._1, null),x._2))
-      .foreach(println)
-
-    /**
-      * orderBy 操作需要在 join() 之后
-      */
-    ratingsDF.join(usersDF,"UserID").filter("Age = '18'").groupBy("MovieID")
-      .count().join(moviesDF,"MovieID").select("Title","count").orderBy($"count".desc).show(5)
-
-    ratingsDF.join(usersDF,"UserID").filter("Age = '25'").groupBy("MovieID")
-      .count().join(moviesDF,"MovieID").select("Title","count").orderBy($"count".desc).show(5)
+    }
 
     spark.stop()
-
-
-
 
   }
 }
