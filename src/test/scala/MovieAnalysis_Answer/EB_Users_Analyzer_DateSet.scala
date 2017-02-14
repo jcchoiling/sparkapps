@@ -9,7 +9,7 @@ import org.apache.spark.sql.{Row, SparkSession}
 /**
   * 版权：DT大数据梦工厂所有
   * 时间：2017年1月21日；
-  * 电商用户行为分析系统：在实际的生产环境下一般都是J2EE+Hadoop+Spark+DB的方式实现的综合技术栈，在使用Spark进行电商用户行为分析的
+  * 电商用户行为分析系统：在实际的生产环境下一般都是J2EE+Hadoop+Spark+DB(Redis)的方式实现的综合技术栈，在使用Spark进行电商用户行为分析的
   * 时候一般都都会是交互式的，什么是交互式的？也就是说公司内部人员例如营销部门人员向按照特定时间查询访问次数最多的用户或者购买金额最大的
   * 用户TopN,这些分析结果对于公司的决策、产品研发和营销都是至关重要的，而且很多时候是立即向要结果的，如果此时使用Hive去实现的话，可能会
   * 非常缓慢（例如1个小时），而在电商类企业中经过深度调优后的Spark一般都会比Hive快5倍以上，此时的运行时间可能就是分钟级别，这个时候就可以
@@ -20,9 +20,28 @@ import org.apache.spark.sql.{Row, SparkSession}
   * 的行为，当然也适用于SNS社交网络系统，例如对于婚恋网，我们可以通过这几节课讲的内容来分析最匹配的Couple，再例如我们可以分析每周婚恋网站访问
   * 次数TopN,这个时候就可以分析出迫切想找到对象的人，婚恋网站可以基于这些分析结果进行更精准和更有效（更挣钱）的服务！
   *
+  *
+  * 具体数据结构如下所示：
+  * User
+     |-- name: string (nullable = true)
+     |-- registeredTime: string (nullable = true)
+     |-- userID: long (nullable = true)
+
+    Log
+     |-- consumed: double (nullable = true)
+     |-- logID: long (nullable = true)
+     |-- time: string (nullable = true)
+     |-- typed: long (nullable = true)
+     |-- userID: long (nullable = true)
+  *
+  * 注意：
+  *   1，在实际生产环境下要么就是Spark SQL+Parquet的方式，要么就是Spark SQL+Hive
+  *   2,functions.scala这个文件包含了大量的内置函数，尤其在agg中会广泛使用，请大家无比认真反复阅读该源码并进行实践！！！
   */
 object EB_Users_Analyzer_DateSet {
-
+  case class UserLog(logID: Long, userID: Long, time: String, typed: Long, consumed: Double)
+  case class LogOnce(logID: Long, userID: Long, count: Long)
+  case class ConsumedOnce(logID: Long, userID: Long, consumed: Double)
 
   def main(args: Array[String]){
 
@@ -32,7 +51,6 @@ object EB_Users_Analyzer_DateSet {
     Logger.getLogger("org").setLevel(Level.ERROR)
 
     var masterUrl = "local[8]" //默认程序运行在本地Local模式中，主要学习和测试；
-    var dataPath = "data/moviedata/medium/"  //数据存放的目录；
 
     /**
       * 当我们把程序打包运行在集群上的时候一般都会传入集群的URL信息，在这里我们假设如果传入
@@ -40,8 +58,6 @@ object EB_Users_Analyzer_DateSet {
       */
     if(args.length > 0) {
       masterUrl = args(0)
-    } else if (args.length > 1) {
-      dataPath = args(1)
     }
 
 
@@ -49,7 +65,7 @@ object EB_Users_Analyzer_DateSet {
       * 创建Spark会话上下文SparkSession和集群上下文SparkContext，在SparkConf中可以进行各种依赖和参数的设置等，
       * 大家可以通过SparkSubmit脚本的help去看设置信息，其中SparkSession统一了Spark SQL运行的不同环境。
       */
-    val sparkConf = new SparkConf().setMaster(masterUrl).setAppName("Movie_Users_Analyzer_DataSet")
+    val sparkConf = new SparkConf().setMaster(masterUrl).setAppName("EB_Users_Analyzer_DateSet")
 
     /**
       * SparkSession统一了Spark SQL执行时候的不同的上下文环境，也就是说Spark SQL无论运行在那种环境下我们都可以只使用
@@ -77,17 +93,127 @@ object EB_Users_Analyzer_DateSet {
       *
       */
 
-    val usersInfo = spark.read.format("json").json("Json file's path...")
-    val usersAccessLog = spark.read.format("json").json("Json file's path...")
+    /**
+      * 读取用户行文数据，建议使用Parquet的方式；
+      */
+    val userInfo = spark.read.format("parquet").
+      parquet("data/sql/userparquet.parquet")
+    val userLog = spark.read.format("parquet").
+      parquet("data/sql/logparquet.parquet")
 
-    usersAccessLog.filter("time >= 2017.01.01 and time <=  2017.01.10")
-        .join(usersInfo, usersAccessLog("UserID") === usersInfo("UserID"))
-        .groupBy(usersInfo("UserID"), usersInfo("UserName"))
-        .agg(count(usersAccessLog("time")).alias("userCount"))
-        .sort($"userCount".desc)
-        .limit(10)
-        .show()
 
+    /**
+      * 统计特定时间段访问次数最多的Top5: 例如2016-10-01 ~ 2016-11-01
+      */
+    val startTime =  "2016-10-01"
+    val endTime = "2016-11-01"
+
+
+    println("统计特定时间段访问次数最多的Top5: 例如2016-10-01 ~ 2016-11-01 :")
+    userLog.filter("time >= '" + startTime + "' and time <= '" + endTime + "' and typed = 0")
+      .join(userInfo, userInfo("userID") === userLog("userID"))
+      .groupBy(userInfo("userID"),userInfo("name"))
+      .agg(count(userLog("logID")).alias("userLogCount"))
+      .sort($"userLogCount".desc)
+      .limit(5)
+      .show()
+
+
+    /**
+      * 作业：生成Parquet方式的数据其自己实现时间函数然后测试整个代码
+      * val peopleDF = spark.read.json("examples/src/main/resources/people.json")
+        // DataFrames can be saved as Parquet files, maintaining the schema information
+        peopleDF.write.parquet("people.parquet")
+
+        // Read in the parquet file created above
+        // Parquet files are self-describing so the schema is preserved
+        // The result of loading a Parquet file is also a DataFrame
+        val parquetFileDF = spark.read.parquet("people.parquet")
+      */
+
+    /**
+      * 统计特定时间段购买次数最多的Top5: 例如2016-10-01 ~ 2016-11-01
+      */
+    println("统计特定时间段购买次数最多的Top5: 例如2016-10-01 ~ 2016-11-01 :")
+    userLog.filter("time >= '" + startTime + "' and time <= '" + endTime + "' and typed = 1")
+      .join(userInfo, userInfo("userID") === userLog("userID"))
+      .groupBy(userInfo("userID"),userInfo("name"))
+      .agg(round(sum(userLog("consumed")), 2).alias("totalConsumed"))
+      .sort($"totalConsumed".desc)
+      .limit(5)
+      .show
+
+    /**
+      * 统计特定时间段里访问次数增长最多了Top5用户，例如说这一周比上一周访问次数增长最快的5位用户；
+      * 实现思路：一种非常直接的方式是计算这一周每一个用户的访问次数，同时计算出上一周每个用户的访问次数，然后相减并进行排名，但是
+      *   这种实现思路比较消耗性能，我们可以进行一个技能实现业务目标又能够提升性能的方式，即：把这一周的每次用户访问计数为1，把上一周
+      *   的每次用户访问计数为-1，冉舟在agg操作中采用sum即可巧妙的实现增长趋势的量化
+      *
+      */
+
+    val userLogDS = userLog.as[UserLog].filter("time >= '2016-10-08' and time <= '2016-10-14' and typed = '0'")
+      .map(log => LogOnce(log.logID, log.userID, 1) )
+      .union(userLog.as[UserLog].filter("time >= '2016-10-01' and time <= '2016-10-07' and typed = '0'")
+        .map(log => LogOnce(log.logID, log.userID, -1) ))
+
+    println("统计特定时间段里访问次数增长最多的Top5用户，例如说这一周比上一周访问次数增长最快的5位用户: ")
+    userLogDS.join(userInfo, userLogDS("userID") === userInfo("userID"))
+      .groupBy(userInfo("userID"),userInfo("name"))
+      .agg(sum(userLogDS("count")).alias("viewCountIncreased"))
+      .sort($"viewCountIncreased".desc)
+      .limit(5)
+      .show()
+
+
+    /**
+      * 统计特定时间段里购买金额增长最多的Top5用户，例如说这一周比上一周访问次数增长最快的5位用户；
+      *
+      */
+    println("统计特定时间段里购买金额增长最多的Top5用户，例如说这一周比上一周访问次数增长最快的5位用户: ")
+    val userLogConsumerDS = userLog.as[UserLog].filter("time >= '2016-10-08' and time <= '2016-10-14' and typed == 1")
+      .map(log => ConsumedOnce(log.logID, log.userID, log.consumed) )
+      .union(userLog.as[UserLog].filter("time >= '2016-10-01' and time <= '2016-10-07' and typed == 1")
+        .map(log => ConsumedOnce(log.logID, log.userID, -log.consumed) ))
+
+    userLogConsumerDS.join(userInfo, userLogConsumerDS("userID") === userInfo("userID"))
+      .groupBy(userInfo("userID"),userInfo("name"))
+      .agg(round(sum(userLogConsumerDS("consumed")), 2).alias("viewConsumedIncreased"))
+      .sort($"viewConsumedIncreased".desc)
+      .limit(5)
+      .show()
+
+    /**
+      * 统计注册之后前两周内访问最多的前10个人
+      */
+    println("统计注册之后前两周内访问最多的前Top10:")
+    userLog.join(userInfo, userInfo("userID") === userLog("userID"))
+      .filter(userInfo("registeredTime") >= "2016-10-01"
+        && userInfo("registeredTime") <= "2016-10-14"
+        && userLog("time") >= userInfo("registeredTime")
+        && userLog("time") <= date_add(userInfo("registeredTime"), 14)
+        && userLog("typed") === 0)
+      .groupBy(userInfo("userID"),userInfo("name"))
+      .agg(count(userLog("logID")).alias("logTimes"))
+      .sort($"logTimes".desc)
+      .limit(10)
+      .show()
+
+
+    /**
+      * 统计注册之后前两周内购买总额最多的前10个人
+      */
+    println("统计注册之后前两周内购买总额最多的Top 10 :")
+    userLog.join(userInfo, userInfo("userID") === userLog("userID"))
+      .filter(userInfo("registeredTime") >= "2016-10-01"
+        && userInfo("registeredTime") <= "2016-10-14"
+        && userLog("time") >= userInfo("registeredTime")
+        && userLog("time") <= date_add(userInfo("registeredTime"), 14)
+        && userLog("typed") === 1)
+      .groupBy(userInfo("userID"),userInfo("name"))
+      .agg(round(sum(userLog("consumed")),2).alias("totalConsumed"))
+      .sort($"totalConsumed".desc)
+      .limit(10)
+      .show()
 
     //    while(true){} //和通过Spark shell运行代码可以一直看到Web终端的原理是一样的，因为Spark Shell内部有一个LOOP循环
 
