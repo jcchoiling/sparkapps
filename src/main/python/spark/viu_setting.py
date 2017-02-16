@@ -10,7 +10,7 @@ import sys
 os.environ['SPARK_HOME']="/usr/local/Cellar/apache-spark/spark210"
 
 # Need to Explicitly point to python3 if you are using Python 3.x
-os.environ['PYSPARK_PYTHON']="/Library/Frameworks/Python.framework/Versions/3.5/bin/python3"
+os.environ['PYSPARK_PYTHON']="/usr/local/Cellar/python34/3.4.4/Frameworks/Python.framework/Versions/3.4/bin"
 
 #You might need to enter your local IP
 #os.environ['SPARK_LOCAL_IP']="192.168.2.138"
