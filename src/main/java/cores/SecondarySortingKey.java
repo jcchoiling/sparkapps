@@ -88,24 +88,22 @@ public class SecondarySortingKey implements Ordered<SecondarySortingKey>, Serial
     }
 
     @Override
-    public boolean $less$eq(SecondarySortingKey that) {
-        if (this.$less(that)){
-            return true;
-        } else if (this.first == that.getFirst() && this.second == that.getSecond()){
-            return true;
-        }
-
-        return false;
-    }
-
-    @Override
     public boolean $greater$eq(SecondarySortingKey that) {
         if (this.$greater(that)){
             return true;
         } else if (this.first == that.getFirst() && this.second == that.getSecond()){
             return true;
         }
+        return false;
+    }
 
+    @Override
+    public boolean $less$eq(SecondarySortingKey that) {
+        if (this.$less(that)){
+            return true;
+        } else if (this.first == that.getFirst() && this.second == that.getSecond()){
+            return true;
+        }
         return false;
     }
 

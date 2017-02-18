@@ -1,3 +1,6 @@
-Life is Short! You need Spark!
-Hadoop is old-fashioned
-Python is cool
+2 3
+4 1
+3 2
+4 3
+8 7
+2 1
