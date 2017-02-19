@@ -12,9 +12,14 @@ object SimpleApp {
 
     val dataPath = "src/main/resources/" //数据存放的目录
 
+    val x = Map(
+
+    )
+
     //            val conf = new SparkConf().setAppName("HelloSpark").setMaster("spark://HadoopM:7077")
-    val conf = new SparkConf().setAppName("SimpleApp").setMaster("local")
-    val sc = new SparkContext(conf)
+//    val conf = new SparkConf().setAppName("SimpleApp").setMaster("local")
+//    val sc = new SparkContext(conf)
+    val sc = new SparkContext("local","SimpleApp")
 
     val words = sc.textFile(dataPath + "general/spark.txt")
       .flatMap(_.split(" "))
